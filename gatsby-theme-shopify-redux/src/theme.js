@@ -1,18 +1,17 @@
-import {tailwind, base} from '@theme-ui/presets'
+import {tailwind, base, system} from '@theme-ui/presets'
+import rebass from '@rebass/preset'
 export const theme = {
-    ...tailwind,
-    colors: {
-        ...tailwind.colors,
-        gray: ['efefef', '#ddd', '#333', '#111'],
-        background: '#fff',
-    },
+    ...system,
+    ...rebass,
     styles: {
-        ...base.styles, 
-        ...tailwind.styles,
+        ...system.styles,
+        ...rebass,
         Layout: {
             color: 'gray.2',
             fontFamily: 'body',
             fontSize: 1,
+            maxWidth: '100vw',
+            width: '100%'
         } ,
         Header: {
             backgroundColor: 'secondary',
@@ -24,8 +23,8 @@ export const theme = {
         },
         Main: {
             margin: '0 auto',
-            maxWidth: 'max',
-            width: 'default',
+            width: '100%',
+            maxWidth: '100vw'
         },
         Container: {
             p: 3

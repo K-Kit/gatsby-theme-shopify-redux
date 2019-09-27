@@ -18,7 +18,7 @@ exports.createPages = ({ actions, graphql }, options) => {
 
   return graphql(`
   {
-    allShopifyProduct(filter: {}, sort: {fields: updatedAt, order: DESC}, limit: 10) {
+    allShopifyProduct(sort: {fields: updatedAt, order: DESC}, limit: 10) {
       edges {
         node {
           handle
@@ -30,8 +30,9 @@ exports.createPages = ({ actions, graphql }, options) => {
      
   `).then(result => {
     result.data.allShopifyProduct.edges.forEach(({ node }) => {
+      console.log(node)
       createPage({
-        path: `/product/${slugify(node.handle)}/`,
+        path: `/product/${node.handle}/`,
         component: productTemplate,
         context: {
           // Data passed to context is available

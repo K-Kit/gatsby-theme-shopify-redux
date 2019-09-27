@@ -1,15 +1,65 @@
+/** @jsx jsx */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {graphql} from 'gatsby'
 import Layout from '../../components/Layout'
 //import { Test } from './ProductPage.styles';
+import Img from 'gatsby-image'
+import {Styled,Container, jsx } from "theme-ui";
 
-const ProductPage = ({data, ...props}) => (
+import ReactHtmlParser from 'react-html-parser'
+import {Box, Button, Flex,} from 'rebass'
+import {Tiles} from '@rebass/layout'
+import {VariantSelect} from "../../components/VariantSelect";
+
+const ProductPage = ({data, ...props}) => {
+  const product = data.shopifyProduct
+  const html = ReactHtmlParser(product.descriptionHtml)
+  let variantSelectors = product.options.map(option => {
+    return (
+        <Box >
+          {/*<label htmlFor={option.name}>{option.name}</label>*/}
+          <VariantSelect
+              handleChange={() => {}}
+              key={option.id.toString()}
+              option={option}
+              id={option.id.toString()}
+          />
+        </Box>
+    )
+  })
+  return (
   <Layout>
-    <div>TEST</div>
+    <Box mx={'auto'} >
+      <Tiles columns={[1,1,2]}>
+        <Box>
+          <Img fluid={product.images[0].localFile.childImageSharp.fluid} />
+        </Box>
+        <Box  >
+          <Styled.h1 mb={1}>{product.title}</Styled.h1>
+          <Box sx={{"img": {width: '100%'}}} >
+
+            <div
+                sx={{
+                  variant: 'styles',
+                }}>
+              <Styled.root>{html}</Styled.root>
+            </div>
+          </Box>
+
+        </Box>
+      </Tiles>
+      <Flex justifyContent={'flex-end'}>
+        <Tiles columns={[1]} sx={{width: ['100%', 'auto'], maxWidth: '600', }}>
+          {variantSelectors}
+          <Button variant={'primary'}> Add to Cart </Button>
+        </Tiles>
+      </Flex>
+
+    </Box>
   </Layout>
-);
+)};
  
 ProductPage.propTypes = {
   // bla: PropTypes.string,
@@ -33,82 +83,3 @@ export default connect(
 )(ProductPage);
 
  
-export const ProductPageQuery = graphql`
-fragment productFragment on ShopifyProduct {
-  id
-  title
-  handle
-  createdAt
-  tags
-  images {
-    id
-    originalSrc
-    localFile {
-      childImageSharp {
-        fluid(fit: CONTAIN, maxWidth:300) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-  variants {
-    price
-    shopifyId
-    compareAtPrice
-  }
-}
-
-  query ProductPageQuery($handle: String!, $limit: Int!) {
-    shopifyProduct(handle: { eq: $handle }) {
-      id
-      title
-      handle
-      productType
-      descriptionHtml
-      description
-      shopifyId
-      options {
-        id
-        name
-        values
-      }
-      variants {
-        id
-        title
-        price
-        availableForSale
-        shopifyId
-        compareAtPrice
-        selectedOptions {
-          name
-          value
-        }
-      }
-      images {
-        originalSrc
-        id
-        localFile {
-          childImageSharp {
-            fluid(fit: CONTAIN) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    }
-    allShopifyProduct(
-      limit: $limit
-      sort: { fields: [createdAt], order: DESC }
-      filter: {
-        availableForSale: { eq: true }
-        variants: { elemMatch: { availableForSale: { eq: true } } }
-      }
-    ) {
-      edges {
-        node {
-          ...productFragment
-        }
-      }
-    }
-  }
-`

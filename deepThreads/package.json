@@ -48,11 +48,13 @@
     "eslint-plugin-react": "^7.13.0",
     "gh-pages": "^2.0.1",
     "prettier": "^1.17.0",
+    "rebass": "^4.0.6",
     "remark-cli": "^6.0.1",
     "remark-preset-lint-recommended": "^3.0.2",
     "stylefmt": "^6.0.3",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0",
+    "theme-ui": "^0.2.43",
     "write-good": "^1.0.1"
   },
   "keywords": [
