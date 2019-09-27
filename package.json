@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-starter-theme-workspace",
+  "name": "gatsby-theme-supertheme",
   "private": true,
   "version": "0.0.1",
   "main": "index.js",
@@ -9,6 +9,8 @@
   },
   "workspaces": [
     "gatsby-theme-minimal",
-    "example"
+    "example",
+    "deepThreads",
+    "gatsby-theme-shopify-redux"
   ]
 }
