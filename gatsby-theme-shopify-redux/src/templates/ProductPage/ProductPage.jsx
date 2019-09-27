@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {graphql} from 'gatsby'
+import Layout from '../../components/Layout'
 //import { Test } from './ProductPage.styles';
 
 const ProductPage = ({data, ...props}) => (
-  <div>
-    Test content
-  </div>
+  <Layout>
+    <div>TEST</div>
+  </Layout>
 );
-
+ 
 ProductPage.propTypes = {
   // bla: PropTypes.string,
 };
@@ -31,7 +32,7 @@ export default connect(
   mapDispatchToProps,
 )(ProductPage);
 
-
+ 
 export const ProductPageQuery = graphql`
 fragment productFragment on ShopifyProduct {
   id

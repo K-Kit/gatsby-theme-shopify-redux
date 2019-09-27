@@ -19,8 +19,8 @@
     "react-disqus-comments": "^1.4.0",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-share": "^2.4.0",
     "react-redux": "^7.1.1",
+    "react-share": "^2.4.0",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
     "redux-optimistic-ui": "^3.1.0",
@@ -31,6 +31,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.17",
     "@mdx-js/react": "^1.5.0",
+    "@theme-ui/presets": "^0.2.42",
     "gatsby": "2.15.28",
     "gatsby-plugin-react-helmet": "^3.1.10",
     "gatsby-plugin-root-import": "^2.0.5",
@@ -47,15 +48,15 @@
     "react-disqus-comments": "^1.4.0",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-share": "^2.4.0",
-    "theme-ui": "^0.2.43",
     "react-redux": "^7.1.1",
+    "react-share": "^2.4.0",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
     "redux-optimistic-ui": "^3.1.0",
     "redux-saga": "^1.1.1",
     "reselect": "^4.0.0",
-    "shopify-buy": "^2.7.2"
+    "shopify-buy": "^2.7.2",
+    "theme-ui": "^0.2.43"
   },
   "scripts": {
     "develop": "gatsby develop",
