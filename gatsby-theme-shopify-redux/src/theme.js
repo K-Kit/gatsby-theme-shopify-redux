@@ -4,8 +4,8 @@ export const theme = {
     ...system,
     ...rebass,
     styles: {
+        ...base.styles,
         ...system.styles,
-        ...rebass,
         Layout: {
             color: 'gray.2',
             fontFamily: 'body',
@@ -13,14 +13,14 @@ export const theme = {
             maxWidth: '100vw',
             width: '100%'
         } ,
-        Header: {
-            backgroundColor: 'secondary',
-            color: 'background',
-            padding: 3,
-            maxWidth: 'max',
-            width: 'default',
-            margin: '0 auto',
-        },
+        // Header: {
+        //     display: 'grid',
+        //     gridGap: 3,
+        //     gridTemplateColumns: 'repeat(3, 1fr)',
+        //     px: 3,
+        //     py: 4,
+        //     alignItems: 'center',
+        // },
         Main: {
             margin: '0 auto',
             width: '100%',
@@ -29,5 +29,6 @@ export const theme = {
         Container: {
             p: 3
         }
+
     }
 }

@@ -18,7 +18,7 @@ exports.createPages = ({ actions, graphql }, options) => {
 
   return graphql(`
   {
-    allShopifyProduct(sort: {fields: updatedAt, order: DESC}, limit: 10) {
+    allShopifyProduct(sort: { fields: [createdAt], order: DESC },skip:1, limit: 10) {
       edges {
         node {
           handle
