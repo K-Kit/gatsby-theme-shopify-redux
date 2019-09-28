@@ -32,12 +32,13 @@ const ProductPage = ({data, ...props}) => {
   return (
   <Layout>
     <Box mx={'auto'} >
+
+        <Styled.h1 >{product.title}</Styled.h1>
       <Tiles columns={[1,1,2]}>
         <Box>
           <Img fluid={product.images[0].localFile.childImageSharp.fluid} />
         </Box>
         <Box  >
-          <Styled.h1 mb={1}>{product.title}</Styled.h1>
           <Box sx={{"img": {width: '100%'}}} >
 
             <div
