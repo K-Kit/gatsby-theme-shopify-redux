@@ -34,6 +34,17 @@ export const pageQuery = graphql`
     ) {
         nodes {
           ...productFragment
+          images {
+            originalSrc
+            id
+            localFile {
+                childImageSharp {
+                    fluid(fit: CONTAIN, maxWidth: 200) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }
         }
       
     }
