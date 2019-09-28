@@ -32,15 +32,15 @@ const ProductPage = ({data, ...props}) => {
   return (
   <Layout>
     <Box mx={'auto'} >
-
-        <Styled.h1 >{product.title}</Styled.h1>
       <Tiles columns={[1,1,2]}>
         <Box>
           <Img fluid={product.images[0].localFile.childImageSharp.fluid} />
         </Box>
         <Box  >
           <Box sx={{"img": {width: '100%'}}} >
+            
 
+        <Styled.h1 >{product.title}</Styled.h1>
             <div
                 sx={{
                   variant: 'styles',
