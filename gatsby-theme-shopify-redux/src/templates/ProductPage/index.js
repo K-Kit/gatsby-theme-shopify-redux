@@ -11,7 +11,6 @@ export const query = graphql`
         productType
         descriptionHtml
         description
-        compareAtPrice
         shopifyId
         options {
             id
