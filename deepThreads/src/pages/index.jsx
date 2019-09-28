@@ -70,44 +70,7 @@ fragment productFragmentSmall on ShopifyProduct {
       }
     ) {
         nodes {
-          fragment productFragment on ShopifyProduct {
-        id
-        title
-        handle
-        productType
-        descriptionHtml
-        description
-        shopifyId
-        options {
-            id
-            name
-            values
-        }
-        variants {
-            id
-            title
-            price
-            availableForSale
-            shopifyId
-            compareAtPrice
-            selectedOptions {
-                name
-                value
-            }
-        }
-        images {
-            originalSrc
-            id
-            localFile {
-                childImageSharp {
-                    fluid(fit: CONTAIN, maxWidth: 360) {
-                        ...GatsbyImageSharpFluid
-                    }
-                }
-            }
-        }
-    }
-        }
+          ...productFragmentSmall}
       
     }
   
