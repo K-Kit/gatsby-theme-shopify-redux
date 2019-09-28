@@ -41,21 +41,12 @@ export const query = graphql`
             }
         }
     }
+    
 
     query ProductPageQuery($handle: String!, $limit: Int!) {
         shopifyProduct(handle: { eq: $handle }) {
             ...productFragment
-            images {
-                originalSrc
-                id
-                localFile {
-                    childImageSharp {
-                        fluid(fit: CONTAIN, maxWidth: 360) {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
+           
         }
         allShopifyProduct(
             limit: $limit

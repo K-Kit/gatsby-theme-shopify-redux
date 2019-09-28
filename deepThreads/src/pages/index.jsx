@@ -23,6 +23,43 @@ export default Index;
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
+fragment productFragmentSmall on ShopifyProduct {
+  id
+  title
+  handle
+  productType
+  descriptionHtml
+  description
+  shopifyId
+  options {
+      id
+      name
+      values
+  }
+  variants {
+      id
+      title
+      price
+      availableForSale
+      shopifyId
+      compareAtPrice
+      selectedOptions {
+          name
+          value
+      }
+  }
+  images {
+      originalSrc
+      id
+      localFile {
+          childImageSharp {
+              fluid(fit: CONTAIN, maxWidth: 220) {
+                  ...GatsbyImageSharpFluid
+              }
+          }
+      }
+  }
+}
   query IndexQuery {
     allShopifyProduct(
       limit: 20
@@ -33,18 +70,43 @@ export const pageQuery = graphql`
       }
     ) {
         nodes {
-          ...productFragment
-          images {
+          fragment productFragment on ShopifyProduct {
+        id
+        title
+        handle
+        productType
+        descriptionHtml
+        description
+        shopifyId
+        options {
+            id
+            name
+            values
+        }
+        variants {
+            id
+            title
+            price
+            availableForSale
+            shopifyId
+            compareAtPrice
+            selectedOptions {
+                name
+                value
+            }
+        }
+        images {
             originalSrc
             id
             localFile {
                 childImageSharp {
-                    fluid(fit: CONTAIN, maxWidth: 200) {
+                    fluid(fit: CONTAIN, maxWidth: 360) {
                         ...GatsbyImageSharpFluid
                     }
                 }
             }
         }
+    }
         }
       
     }
