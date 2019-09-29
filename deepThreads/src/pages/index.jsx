@@ -2,21 +2,23 @@ import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import Layout from "gatsby-theme-shopify-redux/src/components/Layout";
+import {ProductGrid} from "gatsby-theme-shopify-redux/src/components/ProductGrid";
+// eslint-disable-next-line no-unused-vars
 import PostListing from "../components/PostListing/PostListing";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
-import {ProductGrid} from "gatsby-theme-shopify-redux/src/components/ProductGrid";
 
 const Index = ({data, ...props}) => {
+    // eslint-disable-next-line no-unused-vars
   const postEdges = data.allMarkdownRemark.edges;
   return (
-      <Layout>
+    <Layout {...props}>
 
-          <Helmet title={config.siteTitle} />
-          <SEO />
-        <ProductGrid products={data.allShopifyProduct.nodes} />
+      <Helmet title={config.siteTitle} />
+      <SEO />
+      <ProductGrid products={data.allShopifyProduct.nodes} />
 
-      </Layout>
+    </Layout>
   );
 }
 export default Index;

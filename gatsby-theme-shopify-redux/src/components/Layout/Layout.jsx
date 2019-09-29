@@ -1,13 +1,31 @@
 /** @jsx jsx */
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {Layout as ThemeLayout, Header, Styled, Main, Container,jsx} from "theme-ui";
+import {Layout as ThemeLayout, Header, Styled, Main, Container, jsx, useThemeUI} from "theme-ui";
 import {Global} from "@emotion/core";
 import { Text, Flex, Box} from "rebass";
 import {navigate} from 'gatsby'
 import {NavLink as Link} from "./Layout.styles";
 import config from '../../../data/SiteConfig'
-const Layout = (props) => (
+import {useDispatch, useSelector} from "react-redux";
+import {setIsDesktop} from '../../redux/actions'
+const Layout = (props) => {
+    const dispatch = useDispatch()
+    const isDesktop = useSelector(state => state.ui.isDesktopViewport)
+    const theme = useThemeUI()
+    console.log(theme)
+    useEffect(() => {
+        if (typeof window !== 'undefined'){
+            const viewport = window.visualViewport.width
+            const check = viewport > 900
+            console.log('check', check)
+            if (check !== isDesktop) {
+                console.log('inner')
+                dispatch(setIsDesktop(check))
+            }
+        }
+    })
+    return (
   <>
       <Global
           styles={theme => ({
@@ -114,7 +132,7 @@ const Layout = (props) => (
           </Main>
       </ThemeLayout>
       </>
-);
+)};
 
 Layout.propTypes = {
   // bla: PropTypes.string,

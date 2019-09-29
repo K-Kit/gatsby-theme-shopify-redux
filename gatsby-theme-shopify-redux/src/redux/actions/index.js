@@ -32,6 +32,10 @@ export const setFeaturedImage = (payload) => ({
   type: actionTypes.SET_FEATURED_IMAGE,
   payload: payload
 })
+export const setIsDesktop = (payload) => ({
+  type: actionTypes.SET_IS_DESKTOP_VIEWPORT,
+  payload: payload
+})
 
 
 export const toggleImageBrowser = () => ({

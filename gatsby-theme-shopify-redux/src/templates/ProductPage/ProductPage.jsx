@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {graphql} from 'gatsby'
@@ -13,12 +13,27 @@ import {Box, Button, Flex,} from 'rebass'
 import {Tiles} from '@rebass/layout'
 import {VariantSelect} from "../../components/VariantSelect";
 import * as actions from '../../redux/actions'
+
+import {
+    StyledImage,
+    change,
+    ProductImageLink,
+    ZoomHelper,
+    ProductImagesDesktop,
+    ProductImagesMobile
+} from './ProductPage.styles'
 // import {} from 'react-redux'
-// todo set image effecg
 const ProductPage = ({data, ...props}) => {
     const product = data.shopifyProduct
     const html = ReactHtmlParser(product.descriptionHtml)
     console.log(props)
+    const isBrowser = typeof window !== 'undefined'
+
+    useEffect(() => {
+        if (isBrowser && props.currentProduct !== product){
+            props.setCurrentProduct(product)
+        }
+    })
     // maybe move this part to redux but not sure what advantage there would be.
     let defaultOptionValues = {}
     product.options.map(selector => {
@@ -60,11 +75,17 @@ const ProductPage = ({data, ...props}) => {
     )
   })
   return (
-  <Layout>
+  <Layout {...props}>
     <Box mx={'auto'} >
       <Tiles columns={[1,1,2]}>
         <Box>
-          <Img fluid={product.images[0].localFile.childImageSharp.fluid} />
+            {props.isDesktopViewport ?
+                <ProductImagesDesktop images={product.images} imageFeatured={props.featuredImage}
+                                      imageOnClick={props.setFeaturedImage}/>
+                :
+                <ProductImagesMobile images={product.images} imageFeatured={props.featuredImage}
+                                     imageOnClick={props.setFeaturedImage}/>
+            }
         </Box>
         <Box  >
           <Box sx={{"img": {width: '100%'}}} >
@@ -102,8 +123,10 @@ ProductPage.defaultProps = {
 
 const mapStateToProps = state => ({
   // current variant, featured image, et
-    client: state.shop.client
-
+    client: state.shop.client,
+    currentProduct: state.ui.currentProduct,
+    featuredImage: state.ui.featuredImage,
+    isDesktopViewport: state.ui.isDesktopViewport
 });
 
 const mapDispatchToProps = dispatch => ({

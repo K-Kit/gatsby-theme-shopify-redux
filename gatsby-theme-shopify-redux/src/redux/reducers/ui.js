@@ -2,9 +2,9 @@ import React from 'react'
 import {} from 'lodash'
 import * as actions from '../actions/actionTypes'
 export const defaultInterfaceContext = {
-    isDesktopViewport: null,
+    isDesktopViewport: false,
     cartStatus: 'initial',
-    productImageFeatured: null,
+    featuredImage: null,
     currentProduct: {},
     productImagesBrowserStatus: 'initial',
     loginModalStatus: false,
@@ -18,7 +18,11 @@ const interfaceReducer = (state = defaultInterfaceContext, action) => {
             return {...state, cartStatus: 'closed'}
 
         case actions.SET_CURRENT_PRODUCT:
-            return {...state,}
+            return {...state, currentProduct: action.payload, featuredImage: action.payload.images[0]}
+        case actions.SET_FEATURED_IMAGE:
+            return {...state, featuredImage: action.payload}
+        case actions.SET_IS_DESKTOP_VIEWPORT:
+            return {...state, isDesktopViewport: action.payload}
         default:
             return state
     }
