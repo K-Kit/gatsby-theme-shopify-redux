@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {graphql} from 'gatsby'
@@ -12,16 +12,46 @@ import ReactHtmlParser from 'react-html-parser'
 import {Box, Button, Flex,} from 'rebass'
 import {Tiles} from '@rebass/layout'
 import {VariantSelect} from "../../components/VariantSelect";
-
+import * as actions from '../../redux/actions'
+// import {} from 'react-redux'
+// todo set image effecg
 const ProductPage = ({data, ...props}) => {
-  const product = data.shopifyProduct
-  const html = ReactHtmlParser(product.descriptionHtml)
+    const product = data.shopifyProduct
+    const html = ReactHtmlParser(product.descriptionHtml)
+    console.log(props)
+    // maybe move this part to redux but not sure what advantage there would be.
+    let defaultOptionValues = {}
+    product.options.map(selector => {
+        defaultOptionValues[selector.name] = selector.values[0]
+    })
+    const [optionSelectState, setOptionSelectState] = useState({
+        selectedOptions: { ...defaultOptionValues },
+        selectedVariantQuantity: 1,
+        selectedVariant: product.variants[0],
+    })
+
+    const handleOptionChange = event => {
+        const target = event.target
+        let selectedOptions = optionSelectState.selectedOptions
+        selectedOptions[target.name] = target.value
+
+        // refactor for async change saga
+        // nested reducer interface->product->variantselect,images,etc
+        const selectedVariant = props.client.product.helpers.variantForOptions(
+            product,
+            selectedOptions
+        )
+        setOptionSelectState({
+            ...state,
+            selectedVariant: selectedVariant,
+        })
+    }
   let variantSelectors = product.options.map(option => {
     return (
         <Box >
           {/*<label htmlFor={option.name}>{option.name}</label>*/}
           <VariantSelect
-              handleChange={() => {}}
+              handleChange={handleOptionChange}
               key={option.id.toString()}
               option={option}
               id={option.id.toString()}
@@ -71,11 +101,17 @@ ProductPage.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  // blabla: state.blabla,
+  // current variant, featured image, et
+    client: state.shop.client
+
 });
 
 const mapDispatchToProps = dispatch => ({
   // fnBlaBla: () => dispatch(action.name()),
+    setCurrentProduct: (product) => dispatch(actions.setCurrentProduct(product)),
+    toggleImageBrowser: () => dispatch(actions.toggleImageBrowser()),
+    addVariantToCart: ({variantId, quantity}) => dispatch(actions.addVariantToCart({variantId, quantity})),
+    setFeaturedImage: (img) => dispatch(actions.setFeaturedImage(img))
 });
 
 export default connect(

@@ -1,27 +1,24 @@
 import React from 'react'
-
+import {} from 'lodash'
+import * as actions from '../actions/actionTypes'
 export const defaultInterfaceContext = {
     isDesktopViewport: null,
     cartStatus: 'initial',
-    toggleCart: () => {},
     productImageFeatured: null,
-    featureProductImage: () => {},
-    currentProductImages: [],
-    setCurrentProductImages: () => {},
+    currentProduct: {},
     productImagesBrowserStatus: 'initial',
-    toggleProductImagesBrowser: () => {},
-    contributorAreaStatus: 'initial',
-    toggleContributorArea: () => {},
     loginModalStatus: false,
-    toggleLoginModalStatus: () => {},
 }
 
 const interfaceReducer = (state = defaultInterfaceContext, action) => {
     switch (action.type) {
-        case 'OPEN_CART':
+        case actions.OPEN_CART:
             return {...state, cartStatus: 'open'}
-        case 'CLOSE_CART':
+        case actions.CLOSE_CART:
             return {...state, cartStatus: 'closed'}
+
+        case actions.SET_CURRENT_PRODUCT:
+            return {...state,}
         default:
             return state
     }
