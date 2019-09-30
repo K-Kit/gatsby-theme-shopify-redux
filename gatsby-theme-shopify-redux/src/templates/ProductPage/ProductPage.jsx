@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {graphql} from 'gatsby'
@@ -12,16 +12,63 @@ import ReactHtmlParser from 'react-html-parser'
 import {Box, Button, Flex,} from 'rebass'
 import {Tiles} from '@rebass/layout'
 import {VariantSelect} from "../../components/VariantSelect";
+import * as actions from '../../redux/actions'
 
+import {
+    StyledImage,
+    change,
+    ProductImageLink,
+    ZoomHelper,
+    ProductImagesDesktop,
+    ProductImagesMobile
+} from './ProductPage.styles'
+// import {} from 'react-redux'
 const ProductPage = ({data, ...props}) => {
-  const product = data.shopifyProduct
-  const html = ReactHtmlParser(product.descriptionHtml)
-  let variantSelectors = product.options.map(option => {
+    const product = data.shopifyProduct
+    const html = ReactHtmlParser(product.descriptionHtml)
+    const isBrowser = typeof window !== 'undefined'
+    useEffect(() => {
+        if (isBrowser && props.currentProduct !== product){
+            props.setCurrentProduct(product)
+            // props.setSelectedVariant(product.variants[0])
+        }
+    })
+    // maybe move this part to redux but not sure what advantage there would be.
+    let defaultOptionValues = {}
+    product.options.map(selector => {
+        defaultOptionValues[selector.name] = selector.values[0]
+    })
+    const [optionSelectState, setOptionSelectState] = useState({
+        selectedOptions: { ...defaultOptionValues },
+        quantity: 1,
+        selectedVariant: product.variants[0],
+    })
+
+    // todo refactor and move this logic to redux
+    const handleOptionChange = event => {
+        const target = event.target
+        let selectedOptions = optionSelectState.selectedOptions
+        selectedOptions[target.name] = target.value
+
+        // refactor for async change saga
+        // nested reducer interface->product->variantselect,images,etc
+        const selectedVariant = props.client.product.helpers.variantForOptions(
+            product,
+            selectedOptions
+        )
+        console.log(selectedVariant)
+        setOptionSelectState({
+            ...optionSelectState,
+            selectedVariant: selectedVariant,
+        })
+    }
+
+  let variantSelectors = product.options.map((option, i) => {
     return (
-        <Box >
+        <Box key={i} >
           {/*<label htmlFor={option.name}>{option.name}</label>*/}
           <VariantSelect
-              handleChange={() => {}}
+              handleChange={handleOptionChange}
               key={option.id.toString()}
               option={option}
               id={option.id.toString()}
@@ -30,11 +77,17 @@ const ProductPage = ({data, ...props}) => {
     )
   })
   return (
-  <Layout>
+  <Layout {...props}>
     <Box mx={'auto'} >
       <Tiles columns={[1,1,2]}>
         <Box>
-          <Img fluid={product.images[0].localFile.childImageSharp.fluid} />
+            {props.isDesktopViewport ?
+                <ProductImagesDesktop images={product.images} imageFeatured={props.featuredImage}
+                                      imageOnClick={props.setFeaturedImage}/>
+                :
+                <ProductImagesMobile images={product.images} imageFeatured={props.featuredImage}
+                                     imageOnClick={props.setFeaturedImage}/>
+            }
         </Box>
         <Box  >
           <Box sx={{"img": {width: '100%'}}} >
@@ -54,7 +107,9 @@ const ProductPage = ({data, ...props}) => {
       <Flex justifyContent={'flex-end'}>
         <Tiles columns={[1]} sx={{width: ['100%', 'auto'], maxWidth: '600', }}>
           {variantSelectors}
-          <Button variant={'primary'}> Add to Cart </Button>
+          <Button variant={'primary'} onClick={() => props.addVariantToCart({
+              variantId: optionSelectState.selectedVariant.shopifyId, quantity: optionSelectState.quantity
+          })}> Add to Cart </Button>
         </Tiles>
       </Flex>
 
@@ -71,11 +126,24 @@ ProductPage.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  // blabla: state.blabla,
+  // current variant, featured image, et
+    client: state.shop.client,
+    currentProduct: state.ui.currentProduct,
+    featuredImage: state.ui.featuredImage,
+    isDesktopViewport: state.ui.isDesktopViewport,
+    // selectedVariant: state.ui.selectedVariant,
+
 });
 
 const mapDispatchToProps = dispatch => ({
   // fnBlaBla: () => dispatch(action.name()),
+    setCurrentProduct: (product) => dispatch(actions.setCurrentProduct(product)),
+    toggleImageBrowser: () => dispatch(actions.toggleImageBrowser()),
+    addVariantToCart: ({variantId, quantity}) => dispatch(actions.addVariantToCart({variantId, quantity})),
+    setFeaturedImage: (img) => dispatch(actions.setFeaturedImage(img)),
+    // setSelectedVariant: (payload) => dispatch(actions.setSelectedVariant(payload)),
+    // addToCart:
+
 });
 
 export default connect(

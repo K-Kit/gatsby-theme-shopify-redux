@@ -8,7 +8,8 @@ export const defaultShopState = {
   lineItems: [],
   checkout: { lineItems: [] },
   products: [],
-  shop: {}
+  shop: {},
+  client: null
 }
 const t = {
   type: 'ADD_VARIANT_TO_CART_SAGA',
@@ -27,6 +28,9 @@ const shopReducer = (state = defaultShopState, action) => {
     case 'SET_CHECKOUT':
       // localStorage.setItem(payload.id)
       return {...state, checkout: payload}
+    case 'SET_CLIENT':
+      // localStorage.setItem(payload.id)
+      return {...state, client: payload}
     case 'OPEN_CART':
       return {...state, isCartOpen: true};
     case 'CLOSE_CART':
@@ -36,12 +40,12 @@ const shopReducer = (state = defaultShopState, action) => {
     case 'SET_CART_ERROR':
       return {...state, isCartError: action.payload};
 
-    case 'REMOVE_LINE_ITEM':
-      return state
+    // case 'REMOVE_LINE_ITEM':
+    //   return
     case 'ADD_LINE_ITEM':
       return {state, lineItems:[...state.lineItems, 1]}
-    case 'UPDATE_LINE_ITEM':
-      return state
+    // case 'UPDATE_LINE_ITEM':
+    //   return state
     default:
       return state
   }

@@ -8,16 +8,12 @@ const existingCheckoutID = isBrowser
   ? localStorage.getItem('shopify_checkout_id')
   : null
 
-const _setCheckout = checkout => {
-  if (isBrowser) {
-    localStorage.setItem('shopify_checkout_id', checkout.id)
-  }
-}
+
 
 // todo maybe load checkout, this func is sloppy right now but works
 export function* createCheckout({ meta: { client } }) {
   const checkout = yield call(client.checkout.create.bind(client))
-  _setCheckout(checkout)
+  yield put({type: 'SET_CLIENT', payload: client})
   yield put(setCheckout(checkout))
   yield put(setCheckoutId(checkout.id))
 }
@@ -38,7 +34,7 @@ export function* addVariantSaga({payload, meta: { client }}) {
   const lineItemsToUpdate = [
     { variantId, quantity: parseInt(quantity, 10) },
   ]
-
+  console.log(variantId, quantity)
   // todo refactor to request/receive pattern + naming
   // add to cart, todo add error handling
   const updatedCheckout = yield client.checkout
@@ -51,6 +47,8 @@ export function* addVariantSaga({payload, meta: { client }}) {
   yield put(setAdding(false))
 
 }
+
+
 
 //watcher saga
 export function* watchAddItemSaga(){

@@ -1,4 +1,5 @@
 - name: womens
+  title: Women's
   items:
     - name: Leggings
       tags: [yoga, yogas]
@@ -28,6 +29,7 @@
       tags: [grape-ape]
 
 - name: mens
+  title: Men's
   items:
     - name: Grape Ape
       tags: [grape-ape]
@@ -45,7 +47,9 @@
 
     - name: Hoodies
       tags: [hoodies, zip]
+
 - name: shoes
+  title: Shoes
   items:
     - name: High Tops
       tags: [hightop, high-top, high-tops]

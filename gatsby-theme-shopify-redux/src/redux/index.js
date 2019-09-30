@@ -34,9 +34,9 @@ export const configureStore = () => {
     enhancer,
   )
 
-  store.subscribe(throttle(() => {
-    saveState(store.getState())
-  }, 1000))
+  // store.subscribe(throttle(() => {
+  //   saveState(store.getState())
+  // }, 1000))
 
 // Saga
   function* makeCheckoutSagas() {
@@ -45,6 +45,7 @@ export const configureStore = () => {
 
 // then run the saga
   sagaMiddleware.run(makeCheckoutSagas)
+  // store.dispatch('CREATE_CHECKOUT')
   return store
 }
 

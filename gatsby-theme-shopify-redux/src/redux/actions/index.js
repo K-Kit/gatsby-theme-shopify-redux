@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes'
+import {SET_CURRENT_PRODUCT} from "./actionTypes";
 
 export const setAdding = (payload) => ({
   type: actionTypes.SET_ADDING,
@@ -16,31 +17,38 @@ export const setCheckout = (payload) => ({
 })
 
 
-export const addVariantToCart = ({variantId, quantity}) => ({
-  type: actionTypes.ADD_VARIANT_TO_CART,
-  payload: {variantId,quantity}
+export const addVariantToCart = payload => ({
+  type: actionTypes.ADD_VARIANT_TO_CART_SAGA,
+  payload: payload
 })
-// export const addLineItem = (
-//   {
-//     variantId,
-//   quantity= 1,
-//   customAttributes= [],
-//   }
-// ) => (state) => ({
-//   ...state,
-//   checkout: {
-//     ...state.checkout,
-//     lineItems: state.lineItems.concat([
-//       {variantId, quantity, customAttributes },
-//     ])
-//   }
-//   ,
-// })
-//
-// export const updateLineItem = ({
-//   variantId, quantity, customAttributes
-// }) => {
-//   return (
-//
-//   )
-// }
+
+export const setCurrentProduct = (payload) => ({
+  type: actionTypes.SET_CURRENT_PRODUCT,
+  payload: payload
+})
+
+
+export const setFeaturedImage = (payload) => ({
+  type: actionTypes.SET_FEATURED_IMAGE,
+  payload: payload
+})
+export const setIsDesktop = (payload) => ({
+  type: actionTypes.SET_IS_DESKTOP_VIEWPORT,
+  payload: payload
+})
+
+
+export const toggleImageBrowser = () => ({
+  type: actionTypes.TOGGLE_IMAGE_BROWSER
+})
+
+export const setSelectedVariant = (payload) => ({
+  type: actionTypes.SET_SELECTED_VARIANT,
+  payload: variant
+})
+
+export const addToCart = (payload) => ({
+  type: actionTypes.ADD_VARIANT_TO_CART_SAGA,
+  payload: payload
+})
+
