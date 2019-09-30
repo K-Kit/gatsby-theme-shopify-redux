@@ -1,3 +1,4 @@
+
 # Gatsby Theme Shopify Redux (wip)
 
 ## Why this theme
@@ -32,14 +33,3 @@ module.exports = {
   plugins: [
     {
       resolve: "gatsby-theme-shopify-redux",
-      options: {},
-    },
-  ],
-}
-```
-
-That's it, you can now run your gatsby site using
-
-```shell
-yarn gatsby develop
-```
