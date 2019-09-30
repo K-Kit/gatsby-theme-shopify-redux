@@ -8,6 +8,8 @@ import checkoutSagas from "./sagas/checkout"
 import Client from "shopify-buy"
 import { loadState, saveState } from "./utils"
 
+
+console.log('redux store logic index, node env: ', process.env)
 // initialize shopify client
 const client = Client.buildClient({
   storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
@@ -24,6 +26,7 @@ const composeEnhancers =  typeof window === 'object' && window['__REDUX_DEVTOOLS
 const enhancer = composeEnhancers(
   applyMiddleware( sagaMiddleware, shopifyMiddleware, ),
 );
+
 // apply middleware + redux devtools extension,
 // todo probably remove in production?
 
