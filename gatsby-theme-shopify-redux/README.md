@@ -1,4 +1,5 @@
 # Gatsby Theme Shopify Redux (wip)
+This is not ready for use in production.
 
 ## Why this theme
 - simple & predictable state management with redux
