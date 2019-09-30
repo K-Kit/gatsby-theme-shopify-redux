@@ -13,6 +13,7 @@ ideas:
 - promotions
 - mailchimp
 - google adword sheet export
+- facebook catalogue integration
 
 
 ## Quick Start
