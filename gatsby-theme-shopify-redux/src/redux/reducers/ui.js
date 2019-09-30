@@ -3,7 +3,7 @@ import {} from 'lodash'
 import * as actions from '../actions/actionTypes'
 export const defaultInterfaceContext = {
     isDesktopViewport: false,
-    cartStatus: 'initial',
+    cartStatus: false,
     featuredImage: null,
     currentProduct: {},
     productImagesBrowserStatus: 'initial',
@@ -14,9 +14,11 @@ export const defaultInterfaceContext = {
 const interfaceReducer = (state = defaultInterfaceContext, action) => {
     switch (action.type) {
         case actions.OPEN_CART:
-            return {...state, cartStatus: 'open'}
+            return {...state, cartStatus: true}
         case actions.CLOSE_CART:
-            return {...state, cartStatus: 'closed'}
+            return {...state, cartStatus: false}
+        case actions.TOGGLE_CART:
+            return {...state, cartStatus: !state.cartStatus}
 
         case actions.SET_CURRENT_PRODUCT:
             return {...state, currentProduct: action.payload, featuredImage: action.payload.images[0]}

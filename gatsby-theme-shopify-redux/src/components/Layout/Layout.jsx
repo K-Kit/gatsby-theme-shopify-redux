@@ -8,7 +8,9 @@ import {navigate} from 'gatsby'
 import {NavLink as Link} from "./Layout.styles";
 import config from '../../../data/SiteConfig'
 import {useDispatch, useSelector} from "react-redux";
-import {setIsDesktop} from '../../redux/actions'
+import {setIsDesktop, } from '../../redux/actions'
+import {Sidebar} from "../Sidebar";
+import {TOGGLE_CART} from '../../redux/actions/actionTypes'
 const Layout = (props) => {
     const dispatch = useDispatch()
     const isDesktop = useSelector(state => state.ui.isDesktopViewport)
@@ -49,6 +51,7 @@ const Layout = (props) => {
 
                   <button
                       title='Toggle Menu'
+                      onClick={() => dispatch({type: TOGGLE_CART})}
                       sx={{
                           appearance: 'none',
                           width: 32,
@@ -132,6 +135,7 @@ const Layout = (props) => {
                   {props.children}
               </Container>
           </Main>
+          <Sidebar />
       </ThemeLayout>
       </>
 )};

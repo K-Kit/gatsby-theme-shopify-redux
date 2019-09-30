@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {graphql} from 'gatsby'
 import Layout from '../../components/Layout'
-//import { Test } from './ProductPage.styles';
 import Img from 'gatsby-image'
 import {Styled,Container, jsx } from "theme-ui";
 
@@ -22,7 +21,6 @@ import {
     ProductImagesDesktop,
     ProductImagesMobile
 } from './ProductPage.styles'
-// import {} from 'react-redux'
 const ProductPage = ({data, ...props}) => {
     const product = data.shopifyProduct
     const html = ReactHtmlParser(product.descriptionHtml)
