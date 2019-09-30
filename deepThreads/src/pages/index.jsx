@@ -64,7 +64,7 @@ fragment productFragmentSmall on ShopifyProduct {
 }
   query IndexQuery {
     allShopifyProduct(
-      limit: 50
+      limit: 15,
       sort: { fields: [createdAt], order: DESC },skip:1,
       filter: {
         availableForSale: { eq: true }

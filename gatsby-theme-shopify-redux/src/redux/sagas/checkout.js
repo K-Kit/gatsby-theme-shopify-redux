@@ -1,6 +1,6 @@
 import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'
 import * as actions from '../actions/actionTypes'
-import {setAdding, setCheckoutId, setCheckout, addVariantToCart} from "../actions"
+import {setAdding, setCheckoutId, setCheckout, toggleCart} from "../actions"
 import { ensureState } from 'redux-optimistic-ui'
 import { isBrowser } from "../../utils"
 
@@ -13,6 +13,7 @@ const existingCheckoutID = isBrowser
 // todo maybe load checkout, this func is sloppy right now but works
 export function* createCheckout({ meta: { client } }) {
   const checkout = yield call(client.checkout.create.bind(client))
+  // temp set client need to refactor
   yield put({type: 'SET_CLIENT', payload: client})
   yield put(setCheckout(checkout))
   yield put(setCheckoutId(checkout.id))
@@ -42,6 +43,8 @@ export function* addVariantSaga({payload, meta: { client }}) {
 
   // update checkout
   yield put(setCheckout(updatedCheckout))
+
+  yield put(toggleCart())
 
   // finally set adding to false
   yield put(setAdding(false))

@@ -41,6 +41,9 @@ export const setIsDesktop = (payload) => ({
 export const toggleImageBrowser = () => ({
   type: actionTypes.TOGGLE_IMAGE_BROWSER
 })
+export const toggleCart = () => ({
+  type: actionTypes.TOGGLE_CART
+})
 
 export const setSelectedVariant = (payload) => ({
   type: actionTypes.SET_SELECTED_VARIANT,
