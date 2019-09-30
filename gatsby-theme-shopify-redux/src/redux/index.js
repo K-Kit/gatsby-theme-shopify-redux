@@ -33,7 +33,7 @@ const enhancer = composeEnhancers(
 export const configureStore = () => {
   const store = createStore(
     rootReducer,
-    loadState(),
+    loadState()|| {},
     enhancer,
   )
 
