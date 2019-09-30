@@ -34,9 +34,9 @@ export const configureStore = () => {
     enhancer,
   )
 
-  // store.subscribe(throttle(() => {
-  //   saveState(store.getState())
-  // }, 1000))
+  store.subscribe(throttle(() => {
+    saveState(store.getState())
+  }, 1000))
 
 // Saga
   function* makeCheckoutSagas() {
