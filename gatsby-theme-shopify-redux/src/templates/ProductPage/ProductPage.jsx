@@ -63,9 +63,9 @@ const ProductPage = ({data, ...props}) => {
         })
     }
 
-  let variantSelectors = product.options.map(option => {
+  let variantSelectors = product.options.map((option, i) => {
     return (
-        <Box >
+        <Box key={i} >
           {/*<label htmlFor={option.name}>{option.name}</label>*/}
           <VariantSelect
               handleChange={handleOptionChange}
