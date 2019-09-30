@@ -12,15 +12,17 @@ import {setIsDesktop} from '../../redux/actions'
 const Layout = (props) => {
     const dispatch = useDispatch()
     const isDesktop = useSelector(state => state.ui.isDesktopViewport)
+    const clientExists = useSelector(state => state.shop.client)
     const theme = useThemeUI()
-    console.log(theme)
+
     useEffect(() => {
         if (typeof window !== 'undefined'){
+            if (!clientExists) {
+                dispatch({type: 'CREATE_CHECKOUT'})
+            }
             const viewport = window.visualViewport.width
             const check = viewport > 900
-            console.log('check', check)
             if (check !== isDesktop) {
-                console.log('inner')
                 dispatch(setIsDesktop(check))
             }
         }

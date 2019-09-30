@@ -17,9 +17,9 @@ export const setCheckout = (payload) => ({
 })
 
 
-export const addVariantToCart = ({variantId, quantity}) => ({
-  type: actionTypes.ADD_VARIANT_TO_CART,
-  payload: {variantId,quantity}
+export const addVariantToCart = payload => ({
+  type: actionTypes.ADD_VARIANT_TO_CART_SAGA,
+  payload: payload
 })
 
 export const setCurrentProduct = (payload) => ({
@@ -41,3 +41,14 @@ export const setIsDesktop = (payload) => ({
 export const toggleImageBrowser = () => ({
   type: actionTypes.TOGGLE_IMAGE_BROWSER
 })
+
+export const setSelectedVariant = (payload) => ({
+  type: actionTypes.SET_SELECTED_VARIANT,
+  payload: variant
+})
+
+export const addToCart = (payload) => ({
+  type: actionTypes.ADD_VARIANT_TO_CART_SAGA,
+  payload: payload
+})
+

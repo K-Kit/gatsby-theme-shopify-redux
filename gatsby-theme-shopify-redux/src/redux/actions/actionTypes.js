@@ -16,6 +16,7 @@ export const UPDATE_LINE_ITEM = 'UPDATE_LINE_ITEM'
 export const SET_CHECKOUT_ID = 'SET_CHECKOUT_ID'
 export const SET_WEBURL = 'SET_WEBURL'
 export const SET_CHECKOUT = 'SET_CHECKOUT'
+export const SET_SELECTED_VARIANT = `SET_SELECTED_VARIANT`
 
 
 // saga actions

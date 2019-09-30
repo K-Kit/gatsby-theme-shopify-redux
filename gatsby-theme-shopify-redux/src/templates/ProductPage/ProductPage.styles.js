@@ -180,7 +180,6 @@ class ProductImage extends Component {
 
 export const ProductImagesDesktop = ({ images, imageFeatured, imageOnClick }) => {
     const image = images[0];
-    console.log(imageFeatured)
     return (
         <ProductImagesDesktopRoot>
             <ProductImage

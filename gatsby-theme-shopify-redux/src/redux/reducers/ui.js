@@ -8,6 +8,7 @@ export const defaultInterfaceContext = {
     currentProduct: {},
     productImagesBrowserStatus: 'initial',
     loginModalStatus: false,
+    selectedVariant: null
 }
 
 const interfaceReducer = (state = defaultInterfaceContext, action) => {
@@ -21,6 +22,8 @@ const interfaceReducer = (state = defaultInterfaceContext, action) => {
             return {...state, currentProduct: action.payload, featuredImage: action.payload.images[0]}
         case actions.SET_FEATURED_IMAGE:
             return {...state, featuredImage: action.payload}
+        case actions.SET_SELECTED_VARIANT:
+            return {...state, selectedVariant: action.payload}
         case actions.SET_IS_DESKTOP_VIEWPORT:
             return {...state, isDesktopViewport: action.payload}
         default:
