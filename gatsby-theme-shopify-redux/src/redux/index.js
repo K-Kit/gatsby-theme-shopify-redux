@@ -7,13 +7,13 @@ import {throttle,} from 'lodash'
 import checkoutSagas from "./sagas/checkout"
 import Client from "shopify-buy"
 import { loadState, saveState } from "./utils"
-
+import config from '../../data/SiteConfig'
 
 console.log('redux store logic index, node env: ', process.env.SHOP_NAME)
 // initialize shopify client
 const client = Client.buildClient({
-  storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
-  domain: `${process.env.SHOP_NAME}.myshopify.com`,
+  storefrontAccessToken: config.shopify.accessToken,
+  domain: `${config.shopify.name}.myshopify.com`,
 })
 
 const shopifyMiddleware = createShopifyMiddleware(client)

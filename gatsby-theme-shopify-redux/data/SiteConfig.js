@@ -1,5 +1,10 @@
 const config = {
   siteTitle: "deepThreads", // Site title.
+  // temp fix, trouble with netlify .env
+  shopify: {
+    name: 'deepthreads',
+    accessToken: 'cc796a98d6dea0438ec58590ac58ad73'
+  },
   siteTitleShort: "dT", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt: "GatsbyJS Advanced Starter", // Alternative site title for SEO.
   siteLogo: "/logos/logo-1024.png", // Logo used for SEO and manifest.
