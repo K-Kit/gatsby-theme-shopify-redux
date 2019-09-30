@@ -5,7 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "yarn workspace deepThreads build"
+    "build": "yarn workspace deepThreads build",
+    "ssr": "yarn workspace deepThreads build && yarn workspace deepThreads serve"
   },
   "workspaces": [
     "gatsby-theme-minimal",
