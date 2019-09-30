@@ -31,7 +31,7 @@ export const Sidebar = ({pos='right', children, ...props}) => {
             transition: `transform 0.8s`,
 
         }} >
-            <Box sx={{width: ['100vw', 320]}}  >
+            <Box sx={{width: ['88vw', 320]}}  >
              <Cart  />
                 {children}
             </Box>
