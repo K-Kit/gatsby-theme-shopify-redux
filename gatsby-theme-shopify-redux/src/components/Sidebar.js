@@ -8,14 +8,23 @@ import {CompareAtPrice} from './CompareAtPrice'
 import {useSelector} from "react-redux";
 import Cart from "./Cart/Cart";
 
-export const Sidebar = () => {
+
+const sideStyles = {
+    right: {
+        top: 0, right: 0
+    },
+    left: {
+        top: 0, left: 0
+    },
+}
+
+export const Sidebar = ({pos='right', children, ...props}) => {
     const isOpen = useSelector(state => state.ui.cartStatus)
     return (
         <div sx={{
+            ...sideStyles[pos],
             position: 'fixed',
             height: '100vh',
-            top: 0,
-            right: 0,
             transform: isOpen ? 'translateX(0%)':'translateX(100%)',
             bg: 'lightgrey',
             px: 4,
@@ -24,6 +33,7 @@ export const Sidebar = () => {
         }} >
             <Box sx={{width: ['100vw', 320]}}  >
              <Cart  />
+                {children}
             </Box>
         </div>
     )
