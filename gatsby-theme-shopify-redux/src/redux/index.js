@@ -15,7 +15,7 @@ const client = Client.buildClient({
   storefrontAccessToken: config.shopify.accessToken,
   domain: `${config.shopify.name}.myshopify.com`,
 })
-console.log(process, process.env, process.env.SHOP_NAME)
+console.log('env', process.env)
 const shopifyMiddleware = createShopifyMiddleware(client)
 
 // create saga middleware
