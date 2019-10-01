@@ -109,24 +109,24 @@ const Layout = (props) => {
                           alignItems: 'center',
                           justifyContent: 'flex-end',
                       }}>
-                      <Link
-                          to='/blog'
-                          sx={{
-                              variant: 'styles.navlink',
-                              ml: 3,
-                              py: 3,
-                          }}>
-                          Blog
-                      </Link>
-                      <Link
-                          to='/about'
-                          sx={{
-                              variant: 'styles.navlink',
-                              ml: 3,
-                              py: 3,
-                          }}>
-                          About
-                      </Link>
+                      {/*<Link*/}
+                      {/*    to='/blog'*/}
+                      {/*    sx={{*/}
+                      {/*        variant: 'styles.navlink',*/}
+                      {/*        ml: 3,*/}
+                      {/*        py: 3,*/}
+                      {/*    }}>*/}
+                      {/*    Blog*/}
+                      {/*</Link>*/}
+                      {/*<Link*/}
+                      {/*    to='/about'*/}
+                      {/*    sx={{*/}
+                      {/*        variant: 'styles.navlink',*/}
+                      {/*        ml: 3,*/}
+                      {/*        py: 3,*/}
+                      {/*    }}>*/}
+                      {/*    About*/}
+                      {/*</Link>*/}
                   </div>
 
           </Header>
