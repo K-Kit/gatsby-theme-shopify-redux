@@ -7,15 +7,15 @@ import {throttle,} from 'lodash'
 import checkoutSagas from "./sagas/checkout"
 import Client from "shopify-buy"
 import { loadState, saveState } from "./utils"
-import config from '../../data/SiteConfig'
+
 
 console.log('redux store logic index, node env: ', process.env.SHOP_NAME)
 // initialize shopify client
 const client = Client.buildClient({
-  storefrontAccessToken: config.shopify.accessToken,
-  domain: `${config.shopify.name}.myshopify.com`,
+  storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+  domain: `${process.env.SHOP_NAME}.myshopify.com`,
 })
-console.log('env', process.env)
+
 const shopifyMiddleware = createShopifyMiddleware(client)
 
 // create saga middleware
@@ -33,7 +33,7 @@ const enhancer = composeEnhancers(
 export const configureStore = () => {
   const store = createStore(
     rootReducer,
-    loadState()|| {},
+    loadState(),
     enhancer,
   )
 

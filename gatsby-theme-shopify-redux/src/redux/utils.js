@@ -9,7 +9,7 @@ export const loadState = () => {
   }
   catch (e) {
     // console.log(`error loading state`,e)
-    return null
+    return undefined
   }
 }
 
@@ -19,6 +19,6 @@ export const saveState = (state) => {
     localStorage.setItem('state',serializedState)
   }
   catch (e) {
-    // console.log(`error saving state`,e)
+    console.log(`error saving state`,e)
   }
 }
