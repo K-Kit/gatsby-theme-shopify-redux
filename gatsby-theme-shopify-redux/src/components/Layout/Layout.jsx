@@ -9,7 +9,7 @@ import {NavLink as Link} from "./Layout.styles";
 import config from '../../../data/SiteConfig'
 import {useDispatch, useSelector} from "react-redux";
 import {setIsDesktop, } from '../../redux/actions'
-import {Sidebar} from "../Sidebar";
+import {CartContainer} from "../CartContainer";
 import {TOGGLE_CART} from '../../redux/actions/actionTypes'
 const Layout = (props) => {
     const dispatch = useDispatch()
@@ -135,7 +135,7 @@ const Layout = (props) => {
                   {props.children}
               </Container>
           </Main>
-          <Sidebar />
+          <CartContainer />
       </ThemeLayout>
       </>
 )};

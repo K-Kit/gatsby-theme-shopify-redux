@@ -32,7 +32,7 @@ export const CartListItem = (props) => <li {...props} sx={{
   <Flex justifyContent={'space-between'} alignItems={'center'}>
     <Box w={1/4}>
       <img sx={{
-        width: 48,
+        width: 36,
       }} src={props.item.variant.image.src} />
     </Box>
     <Box w={1/4}>
@@ -62,7 +62,7 @@ export const CartList = ({
                     setCartLoading,
                     isCartLoading,
                   }) => (
-    <div sx={{mt: 6}}>
+    <div sx={{mt: 6, width: '100%'}}>
       <Headers>
         <Box w={1/4}>Product</Box>
         <Box w={1/4}></Box>

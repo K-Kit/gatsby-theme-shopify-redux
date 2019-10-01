@@ -795,7 +795,7 @@
     "@emotion/utils" "0.11.2"
     "@emotion/weak-memoize" "0.2.4"
 
-"@emotion/core@^10.0.0", "@emotion/core@^10.0.17":
+"@emotion/core@^10.0.0", "@emotion/core@^10.0.10", "@emotion/core@^10.0.17":
   version "10.0.17"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.17.tgz#3367376709721f4ee2068cff54ba581d362789d8"
   integrity sha512-gykyjjr0sxzVuZBVTVK4dUmYsorc2qLhdYgSiOVK+m7WXgcYTKZevGWZ7TLAgTZvMelCTvhNq8xnf8FR1IdTbg==
@@ -1510,6 +1510,18 @@
     "@theme-ui/preset-system" "^0.2.40"
     "@theme-ui/preset-tailwind" "^0.2.42"
     "@theme-ui/preset-tosh" "^0.2.40"
+
+"@theme-ui/style-guide@^0.2.43":
+  version "0.2.43"
+  resolved "https://registry.yarnpkg.com/@theme-ui/style-guide/-/style-guide-0.2.43.tgz#d0a9329046f1c74ab373c40855a68dc93583ce0a"
+  integrity sha512-uy63Iu5QoICblYttKloe0tQhd8gBtWwSEDwGwSJeOpm+1YvIrag9645mFD+IUbgdGqBSR+H+O520qKbsn+DAnA==
+  dependencies:
+    "@emotion/core" "^10.0.10"
+    "@theme-ui/presets" "^0.2.42"
+    color "^3.1.2"
+    lodash.get "^4.4.2"
+    react "^16.8.6"
+    theme-ui "^0.2.43"
 
 "@types/configstore@^2.1.1":
   version "2.1.1"
@@ -6624,6 +6636,14 @@ gatsby-telemetry@^1.1.28:
     stack-utils "1.0.2"
     uuid "3.3.3"
 
+gatsby-theme-style-guide@^0.2.43:
+  version "0.2.43"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-style-guide/-/gatsby-theme-style-guide-0.2.43.tgz#595ca24e75394399d67e230a54ca7da7c4e1e850"
+  integrity sha512-oz9F4W7YqKlkxYFpCM6zAVib2FaOQJMgm/S9cQc5OdkAthPhRfb41xM8NUM9tmViy49Pc8GVQu5sh8GDQqjoUg==
+  dependencies:
+    "@theme-ui/style-guide" "^0.2.43"
+    theme-ui "^0.2.43"
+
 gatsby-transformer-remark@^2.3.12:
   version "2.6.26"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-2.6.26.tgz#46882582d4ff995cdb9919cb5cb4a23db10b7ecd"
@@ -9338,7 +9358,7 @@ lodash.foreach@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
   integrity sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=
 
-lodash.get@^4.0:
+lodash.get@^4.0, lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=

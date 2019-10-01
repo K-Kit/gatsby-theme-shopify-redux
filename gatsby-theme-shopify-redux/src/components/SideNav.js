@@ -7,6 +7,7 @@ import {navigate} from 'gatsby'
 import {CompareAtPrice} from './CompareAtPrice'
 import {useSelector} from "react-redux";
 import Cart from "./Cart/Cart";
+import {SideBar} from "./SideBar";
 
 
 const sideStyles = {
@@ -18,23 +19,11 @@ const sideStyles = {
     },
 }
 
-export const Sidebar = ({pos='right', children, ...props}) => {
+export const SideNav = ({pos='left', children, ...props}) => {
     const isOpen = useSelector(state => state.ui.cartStatus)
     return (
-        <div sx={{
-            ...sideStyles[pos],
-            position: 'fixed',
-            height: '100vh',
-            transform: isOpen ? 'translateX(0%)':'translateX(100%)',
-            bg: 'lightgrey',
-            px: 4,
-            transition: `transform 0.8s`,
-
-        }} >
-            <Box sx={{width: ['88vw', 320]}}  >
-             <Cart  />
+        <SideBar pos={'left'}>
                 {children}
-            </Box>
-        </div>
+        </SideBar>
     )
 }

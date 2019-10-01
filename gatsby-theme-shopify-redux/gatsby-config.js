@@ -7,6 +7,7 @@ module.exports = {
         
         `gatsby-transformer-yaml`,
         'gatsby-plugin-theme-ui',
+        'gatsby-theme-style-guide',
         
         'gatsby-plugin-react-helmet',
         

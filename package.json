@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn workspace deepThreads build",
+    "dev": "yarn workspace deepThreads dev",
     "ssr": "yarn workspace deepThreads build && yarn workspace deepThreads serve"
   },
   "workspaces": [

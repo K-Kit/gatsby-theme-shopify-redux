@@ -5,9 +5,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {CartList} from "./Cart.styles";
 //import { Test } from './Cart.styles';
-
+import {Box, Flex, Button} from "rebass";
+import {toggleCart} from '../../redux/actions'
 const Cart = (props) => (
   <div>
+      <Button
+          onClick={props.toggle}
+          sx={{
+          width: [50],
+          height: 50,
+          position: 'fixed',
+          top: [20],
+          left: -50,
+          transform: `translateX(${props.open ? '50px' : '3px'})`,
+          transition: '0.8s',
+          bg: 'muted',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+              color: 'black',
+      }}>
+          Cart
+      </Button>
       <CartList
           items={props.checkout.lineItems}
           // handleRemove={handleRemove}
@@ -27,11 +46,13 @@ Cart.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  checkout: state.shop.checkout
+  checkout: state.shop.checkout,
+
 });
 
 const mapDispatchToProps = dispatch => ({
   // fnBlaBla: () => dispatch(action.name()),
+    toggle: () => dispatch(toggleCart())
 });
 
 export default connect(

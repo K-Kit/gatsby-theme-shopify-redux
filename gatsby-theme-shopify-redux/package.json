@@ -43,6 +43,7 @@
     "gatsby-plugin-theme-ui": "^0.2.43",
     "gatsby-source-filesystem": "^2.1.28",
     "gatsby-source-shopify": "^3.0.19",
+    "gatsby-theme-style-guide": "^0.2.43",
     "gatsby-transformer-sharp": "^2.2.19",
     "gatsby-transformer-yaml": "^2.2.12",
     "i": "^0.3.6",
