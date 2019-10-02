@@ -30,7 +30,6 @@ export function* addVariantSaga({payload, meta: { client }}) {
   const lineItemsToUpdate = [
     { variantId, quantity: parseInt(quantity, 10) },
   ]
-  console.log(variantId, quantity)
   // todo refactor to request/receive pattern + naming
   // add to cart, todo add error handling
   const updatedCheckout = yield client.checkout
@@ -51,12 +50,18 @@ export function setVariantSaga({payload, meta: {client}}) {
    * @payload: {product, selectedOptions}
    * uses shopify client from meta to fetch variant info
    * needs to update inStock: bool, price: float, and selected image (maybe)
-   * 
+   *
    */
 }
 
 //watcher saga
 export function* watchAddItemSaga(){
+  yield takeEvery(actions.ADD_VARIANT_TO_CART_SAGA, addVariantSaga)
+}
+
+
+//watcher saga
+export function* watchSetVariantSaga(){
   yield takeEvery(actions.ADD_VARIANT_TO_CART_SAGA, addVariantSaga)
 }
 

@@ -49,6 +49,10 @@ export const setSelectedVariant = (payload) => ({
   type: actionTypes.SET_SELECTED_VARIANT,
   payload: variant
 })
+export const setSelectedVariantsAGA = (payload) => ({
+  type: actionTypes.SET_SELECTED_VARIANT_SAGA,
+  payload: variant
+})
 
 export const addToCart = (payload) => ({
   type: actionTypes.ADD_VARIANT_TO_CART_SAGA,
