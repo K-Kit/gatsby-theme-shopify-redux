@@ -2,7 +2,7 @@ import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effect
 import * as actions from '../actions/actionTypes'
 import {setAdding, setCheckoutId, setCheckout, toggleCart} from "../actions"
 import { ensureState } from 'redux-optimistic-ui'
-import { isBrowser } from "../../utils"
+import { isBrowser } from "../../../utils"
 
 
 // todo maybe load checkout, this func is sloppy right now but works

@@ -12,6 +12,7 @@ import {Box, Button, Flex,} from 'rebass'
 import {Tiles} from '@rebass/layout'
 import {VariantSelect} from "../../components/VariantSelect";
 import * as actions from '../../redux/actions'
+// import {set} from '../../redux/actions'
 
 import {
     StyledImage,
@@ -21,7 +22,10 @@ import {
     ProductImagesDesktop,
     ProductImagesMobile
 } from './ProductPage.styles'
+
+
 const ProductPage = ({data, ...props}) => {
+    console.log(props)
     const product = data.shopifyProduct
     const html = ReactHtmlParser(product.descriptionHtml)
     const isBrowser = typeof window !== 'undefined'
@@ -45,16 +49,12 @@ const ProductPage = ({data, ...props}) => {
     // todo refactor and move this logic to redux
     const handleOptionChange = event => {
         const target = event.target
-        let selectedOptions = optionSelectState.selectedOptions
+        optionSelectState.selectedOptions
+        props.setSelectedVariant({
+            product: product,
+            options: optionSelectState.selectedOptions
+        })
         selectedOptions[target.name] = target.value
-
-        // refactor for async change saga
-        // nested reducer interface->product->variantselect,images,etc
-        const selectedVariant = props.client.product.helpers.variantForOptions(
-            product,
-            selectedOptions
-        )
-        console.log(selectedVariant)
         setOptionSelectState({
             ...optionSelectState,
             selectedVariant: selectedVariant,
@@ -125,22 +125,21 @@ ProductPage.defaultProps = {
 
 const mapStateToProps = state => ({
   // current variant, featured image, et
-    client: state.shop.client,
-    currentProduct: state.ui.currentProduct,
-    featuredImage: state.ui.featuredImage,
-    isDesktopViewport: state.ui.isDesktopViewport,
-    // selectedVariant: state.ui.selectedVariant,
+    currentProduct: state.productPage.currentProduct,
+    featuredImage: state.productPage.featuredImage,
+    isDesktopViewport: state.productPage.isDesktop,
+    selectedVariant: state.productPage.selectedVariant,
 
 });
 
 const mapDispatchToProps = dispatch => ({
   // fnBlaBla: () => dispatch(action.name()),
-    setCurrentProduct: (product) => dispatch(actions.setCurrentProduct(product)),
+
     toggleImageBrowser: () => dispatch(actions.toggleImageBrowser()),
-    addVariantToCart: ({variantId, quantity}) => dispatch(actions.addVariantToCart({variantId, quantity})),
-    setFeaturedImage: (img) => dispatch(actions.setFeaturedImage(img)),
-    // setSelectedVariant: (payload) => dispatch(actions.setSelectedVariant(payload)),
-    // addToCart:
+    addVariantToCart: ({variantId, quantity}) => dispatch(actions.addToCartSaga({variantId, quantity})),
+    setFeaturedImage: (img) => dispatch(actions.setFeatured(img)),
+    setSelectedVariant: ({product, options}) => dispatch(actions.setSelectedVariantSaga({product, options})),
+    setCurrentProduct: (product) => dispatch(actions.setProduct(product)),
 
 });
 

@@ -6,7 +6,7 @@ export const defaultShopState = {
   adding: false,
   isCartError: false,
   lineItems: [],
-  checkout: { lineItems: [] },
+  checkout: { lineItems: [], id: null },
   products: [],
   shop: {},
   client: null

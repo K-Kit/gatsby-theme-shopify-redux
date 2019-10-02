@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {CartList} from "./Cart.styles";
 //import { Test } from './Cart.styles';
 import {Box, Flex, Button} from "rebass";
-import {toggleCart} from '../../redux/actions'
+import {toggleCart} from '../../redux/old/actions'
 const Cart = (props) => (
   <div>
       <Button
@@ -46,7 +46,7 @@ Cart.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  checkout: state.shop.checkout,
+  checkout: state.shopify.checkout,
 
 });
 

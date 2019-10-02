@@ -2,11 +2,11 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { all } from 'redux-saga/effects'
 import rootReducer from './reducers'
-import {createShopifyMiddleware} from "./middleware/shopifyMiddleWare"
+import {createShopifyMiddleware} from "./old/middleware/shopifyMiddleWare"
 import {throttle,} from 'lodash'
-import checkoutSagas from "./sagas/checkout"
+import sagas from "./sagas"
 import Client from "shopify-buy"
-import { loadState, saveState } from "./utils"
+import { loadState, saveState } from "./old/utils"
 
 
 console.log('redux store logic index, node env: ', process.env.SHOP_NAME)
@@ -33,7 +33,7 @@ const enhancer = composeEnhancers(
 export const configureStore = () => {
   const store = createStore(
     rootReducer,
-    loadState(),
+    // loadState(),
     enhancer,
   )
 
@@ -43,7 +43,7 @@ export const configureStore = () => {
 
 // Saga
   function* makeCheckoutSagas() {
-    yield all([...checkoutSagas])
+    yield all([...sagas])
   }
 
 // then run the saga

@@ -8,7 +8,7 @@ import {ProductCard} from "./ProductCard";
 export const ProductGrid = ({products, ...props}) => {
     return (
         <Tiles columns={[2,2,3,4]}>
-            {products && products.map(product => <ProductCard product={product} />)}
+            {products && products.map((product, i) => <ProductCard key={i} product={product} />)}
         </Tiles>
     )
 }

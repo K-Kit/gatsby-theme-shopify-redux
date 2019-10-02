@@ -8,18 +8,16 @@ import {navigate} from 'gatsby'
 import {NavLink as Link} from "./Layout.styles";
 import config from '../../../data/SiteConfig'
 import {useDispatch, useSelector} from "react-redux";
-import {setIsDesktop, } from '../../redux/actions'
+// import {setIsDesktop, } from '../../redux/old/actions'
 import {CartContainer} from "../CartContainer";
-import {TOGGLE_CART} from '../../redux/actions/actionTypes'
+import {TOGGLE_CART, setIsDesktop, toggleCart} from '../../redux/actions'
 const Layout = (props) => {
     const dispatch = useDispatch()
-    const isDesktop = useSelector(state => state.ui.isDesktopViewport)
-    const clientExists = useSelector(state => state.shop.client)
-    const theme = useThemeUI()
-
+    const isDesktop = useSelector(state => state.productPage.isDesktop)
+    const checkoutExists = useSelector(state => state.shopify.checkout.id)
     useEffect(() => {
         if (typeof window !== 'undefined'){
-            if (!clientExists) {
+            if (!checkoutExists) {
                 dispatch({type: 'CREATE_CHECKOUT'})
             }
             const viewport = window.visualViewport.width
@@ -51,7 +49,7 @@ const Layout = (props) => {
 
                   <button
                       title='Toggle Menu'
-                      onClick={() => dispatch({type: TOGGLE_CART})}
+                      onClick={() => dispatch(toggleCart())}
                       sx={{
                           appearance: 'none',
                           width: 32,

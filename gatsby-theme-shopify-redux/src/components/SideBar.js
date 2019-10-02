@@ -18,8 +18,7 @@ const sideStyles = {
     },
 }
 
-export const SideBar = ({pos='left', children, ...props}) => {
-    const isOpen = useSelector(state => state.ui.cartStatus)
+export const SideBar = ({pos='left', children, isOpen, ...props}) => {
     return (
         <div sx={{
             ...sideStyles[pos],

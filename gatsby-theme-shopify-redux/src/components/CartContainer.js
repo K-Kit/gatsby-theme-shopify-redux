@@ -20,10 +20,10 @@ const sideStyles = {
 }
 
 export const CartContainer = ({pos='right', children, ...props}) => {
-    const isOpen = useSelector(state => state.ui.cartStatus)
+    const isOpen = useSelector(state => state.cart.isOpen)
     return (
 
-        <SideBar pos={'right'}>
+        <SideBar pos={'right'} isOpen={isOpen}>
              <Cart open={isOpen}  />
         </SideBar>
     )
