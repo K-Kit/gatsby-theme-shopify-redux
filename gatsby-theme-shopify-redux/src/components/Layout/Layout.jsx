@@ -132,7 +132,7 @@ const Layout = (props) => {
                   </div>
 
           </Header>
-          <Main>
+          <Main onClick={() => dispatch(closeCart())}>
               <Container>
                   {props.children}
               </Container>

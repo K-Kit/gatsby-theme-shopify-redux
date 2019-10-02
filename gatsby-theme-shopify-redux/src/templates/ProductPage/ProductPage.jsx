@@ -41,6 +41,7 @@ const ProductPage = ({data, ...props}) => {
     })
 
     useEffect(() => {
+        // todo (maybe) cleanup func to reduce store size and delete selected products & stuff
         if (isBrowser && props.currentProduct !== product){
             props.setCurrentProduct(product)
             props.setSelectedVariant({

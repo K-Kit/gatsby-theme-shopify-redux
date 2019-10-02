@@ -21,10 +21,11 @@ const sideStyles = {
 
 export const CartContainer = ({pos='right', children, ...props}) => {
     const isOpen = useSelector(state => state.cart.isOpen)
+    const checkoutUrl = useSelector(state => state.shopify.checkout.webUrl)
     return (
 
         <SideBar pos={'right'} isOpen={isOpen} >
-             <Cart open={isOpen}  />
+             <Cart open={isOpen} checkoutUrl={checkoutUrl}  />
         </SideBar>
     )
 }

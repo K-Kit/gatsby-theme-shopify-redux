@@ -29,11 +29,11 @@ const enhancer = composeEnhancers(
 
 // apply middleware + redux devtools extension,
 // todo probably remove in production?
-
+// todo: impl better load/save state, just doing everything right now
 export const configureStore = () => {
   const store = createStore(
     rootReducer,
-    // loadState(),
+    loadState(),
     enhancer,
   )
 

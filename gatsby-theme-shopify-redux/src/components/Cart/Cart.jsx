@@ -7,6 +7,8 @@ import {CartList} from "./Cart.styles";
 //import { Test } from './Cart.styles';
 import {Box, Flex, Button} from "rebass";
 import {toggleCart} from '../../redux/old/actions'
+
+// todo move styles out of here
 const Cart = (props) => (
   <div>
       <Button
@@ -35,11 +37,16 @@ const Cart = (props) => (
           // setCartLoading={setCartLoading}
           // isCartLoading={this.state.isLoading}
       />
+      <a href={props.checkoutUrl}>
+      <Button> Check Out </Button>
+      </a>
   </div>
 );
 
 Cart.propTypes = {
   // bla: PropTypes.string,
+    checkoutUrl: PropTypes.string,
+    checkout: PropTypes.object
 };
 
 Cart.defaultProps = {

@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 import React from 'react'
 import {Flex, Box} from "rebass";
 import {Input} from "@rebass/forms";
+import {MdClose} from 'react-icons/md'
 
 export const CartListRoot = props => <ul {...props} sx={{
   listStyle: 'none',
@@ -29,7 +30,7 @@ export const Headers = (props) => <div {...props} sx={{
 export const CartListItem = (props) => <li {...props} sx={{
 
 }}>
-  <Flex justifyContent={'space-between'} alignItems={'center'}>
+  <Flex justifyContent={'space-evenly'} alignItems={'center'}>
     <Box w={1/4}>
       <img sx={{
         width: 36,
@@ -43,14 +44,17 @@ export const CartListItem = (props) => <li {...props} sx={{
       <Input sx={{
         p: 1,
         m: 1,
-        width: 80,
-        // height: 48
+        width: 40,
       }}
+             value={props.item.quantity}
       type={'number'}
+             // value={it}
       />
     </Box>
     <Box w={1/4}>
-        X
+        <MdClose onClick={() => {
+        //    remove item from cart, pass
+        }} />
     </Box>
   </Flex>
 </li>
@@ -70,7 +74,10 @@ export const CartList = ({
         <Box w={1/4}>Remove</Box>
       </Headers>
       <CartListRoot>
-        {items.map(item => (
+        {items.map(item => {
+
+            console.log('cart item', item)
+            return(
             <CartListItem
                 key={item.id}
                 item={item}
@@ -79,7 +86,8 @@ export const CartList = ({
                 // setCartLoading={setCartLoading}
                 // isCartLoading={isCartLoading}
             />
-        ))}
+        )}
+        )}
       </CartListRoot>
     </div>
 )
