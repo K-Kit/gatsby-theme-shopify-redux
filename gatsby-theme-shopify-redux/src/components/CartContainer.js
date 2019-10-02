@@ -23,7 +23,7 @@ export const CartContainer = ({pos='right', children, ...props}) => {
     const isOpen = useSelector(state => state.cart.isOpen)
     return (
 
-        <SideBar pos={'right'} isOpen={isOpen}>
+        <SideBar pos={'right'} isOpen={isOpen} >
              <Cart open={isOpen}  />
         </SideBar>
     )

@@ -9,7 +9,7 @@ import {Input} from "@rebass/forms";
 export const CartListRoot = props => <ul {...props} sx={{
   listStyle: 'none',
   m: 0,
-  p: 0
+  p: 0,
 }} />
 
 export const Headers = (props) => <div {...props} sx={{
@@ -62,7 +62,7 @@ export const CartList = ({
                     setCartLoading,
                     isCartLoading,
                   }) => (
-    <div sx={{mt: 6, width: '100%'}}>
+    <div sx={{mt: 6, width: ['100%'], minWidth: 280}}>
       <Headers>
         <Box w={1/4}>Product</Box>
         <Box w={1/4}></Box>

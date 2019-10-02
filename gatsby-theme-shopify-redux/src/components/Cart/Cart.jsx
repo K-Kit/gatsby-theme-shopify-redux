@@ -28,6 +28,7 @@ const Cart = (props) => (
           Cart
       </Button>
       <CartList
+          sx={{minWidth: 300}}
           items={props.checkout.lineItems}
           // handleRemove={handleRemove}
           // updateQuantity={handleQuantityChange}

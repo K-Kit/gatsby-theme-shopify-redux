@@ -4,7 +4,7 @@ import {
     addToCart, closeCart, openCart,
     removeLineItem,
     setCheckout,
-    setFeatured, setIsDesktop, setProduct, toggleCart,
+    setFeatured, setIsDesktop, setProduct, setSelectedVariant, toggleCart,
     toggleImageBrowser,
     updateLineItem
 } from "./actions";
@@ -46,6 +46,7 @@ const productPage = handleActions(
             featuredImage: payload.images[0]
         }),
         [setIsDesktop]: (state, {payload}) => ({...state, isDesktop: payload}),
+        [setSelectedVariant]: (state, {payload}) => ({...state, selectedVariant: payload}),
     },
     {
         isDesktop: false,

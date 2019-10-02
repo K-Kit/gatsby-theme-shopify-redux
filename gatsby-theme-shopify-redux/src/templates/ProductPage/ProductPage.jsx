@@ -29,12 +29,7 @@ const ProductPage = ({data, ...props}) => {
     const product = data.shopifyProduct
     const html = ReactHtmlParser(product.descriptionHtml)
     const isBrowser = typeof window !== 'undefined'
-    useEffect(() => {
-        if (isBrowser && props.currentProduct !== product){
-            props.setCurrentProduct(product)
-            // props.setSelectedVariant(product.variants[0])
-        }
-    })
+
     // maybe move this part to redux but not sure what advantage there would be.
     let defaultOptionValues = {}
     product.options.map(selector => {
@@ -43,21 +38,28 @@ const ProductPage = ({data, ...props}) => {
     const [optionSelectState, setOptionSelectState] = useState({
         selectedOptions: { ...defaultOptionValues },
         quantity: 1,
-        selectedVariant: product.variants[0],
     })
-
+    useEffect(() => {
+        if (isBrowser && props.currentProduct !== product){
+            props.setCurrentProduct(product)
+            props.setSelectedVariant({
+                product: product,
+                options: defaultOptionValues,
+            })
+        }
+    })
     // todo refactor and move this logic to redux
     const handleOptionChange = event => {
         const target = event.target
-        optionSelectState.selectedOptions
+        const selectedOptions = {...optionSelectState.selectedOptions, [target.name]: target.value}
+        console.log(selectedOptions)
         props.setSelectedVariant({
             product: product,
-            options: optionSelectState.selectedOptions
+            options: selectedOptions
         })
-        selectedOptions[target.name] = target.value
         setOptionSelectState({
             ...optionSelectState,
-            selectedVariant: selectedVariant,
+            selectedOptions
         })
     }
 
@@ -106,7 +108,7 @@ const ProductPage = ({data, ...props}) => {
         <Tiles columns={[1]} sx={{width: ['100%', 'auto'], maxWidth: '600', }}>
           {variantSelectors}
           <Button variant={'primary'} onClick={() => props.addVariantToCart({
-              variantId: optionSelectState.selectedVariant.shopifyId, quantity: optionSelectState.quantity
+              variantId: props.selectedVariant.shopifyId, quantity: optionSelectState.quantity
           })}> Add to Cart </Button>
         </Tiles>
       </Flex>

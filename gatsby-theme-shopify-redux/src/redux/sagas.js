@@ -76,7 +76,7 @@ export function* setVariantSaga({payload: {product,options}, meta: {client}}) {
         options
     )
     yield put(setSelectedVariant(selectedVariant))
-    console.log('set sel variant', selectedVariant)
+    // console.log('set sel variant', selectedVariant)
 }
 export default [
     takeEvery(SET_SELECTED_VARIANT_SAGA, setVariantSaga),
