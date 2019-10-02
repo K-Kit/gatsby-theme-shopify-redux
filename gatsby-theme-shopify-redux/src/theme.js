@@ -1,13 +1,14 @@
-import {tailwind, base, system} from '@theme-ui/presets'
+import {tailwind, base, system, bootstrap} from '@theme-ui/presets'
 import rebass from '@rebass/preset'
 export const theme = {
     ...system,
     ...rebass,
+    colors: {...bootstrap.colors},
     styles: {
         ...base.styles,
         ...system.styles,
         Layout: {
-            color: 'gray.2',
+            // color: 'gray.2',
             fontFamily: 'body',
             fontSize: 1,
             maxWidth: '100vw',

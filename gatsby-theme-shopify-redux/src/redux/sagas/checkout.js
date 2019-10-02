@@ -4,11 +4,6 @@ import {setAdding, setCheckoutId, setCheckout, toggleCart} from "../actions"
 import { ensureState } from 'redux-optimistic-ui'
 import { isBrowser } from "../../utils"
 
-const existingCheckoutID = isBrowser
-  ? localStorage.getItem('shopify_checkout_id')
-  : null
-
-
 
 // todo maybe load checkout, this func is sloppy right now but works
 export function* createCheckout({ meta: { client } }) {
@@ -51,16 +46,19 @@ export function* addVariantSaga({payload, meta: { client }}) {
 
 }
 
-
+export function setVariantSaga({payload, meta: {client}}) {
+  /**
+   * @payload: {product, selectedOptions}
+   * uses shopify client from meta to fetch variant info
+   * needs to update inStock: bool, price: float, and selected image (maybe)
+   * 
+   */
+}
 
 //watcher saga
 export function* watchAddItemSaga(){
   yield takeEvery(actions.ADD_VARIANT_TO_CART_SAGA, addVariantSaga)
 }
-
-
-
-
 
 // Our worker Saga: will perform the async increment task
 export function* incrementAsync() {
