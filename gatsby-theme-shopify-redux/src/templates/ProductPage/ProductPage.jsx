@@ -39,6 +39,7 @@ const ProductPage = ({data, ...props}) => {
         selectedOptions: { ...defaultOptionValues },
         quantity: 1,
     })
+
     useEffect(() => {
         if (isBrowser && props.currentProduct !== product){
             props.setCurrentProduct(product)
@@ -47,12 +48,12 @@ const ProductPage = ({data, ...props}) => {
                 options: defaultOptionValues,
             })
         }
-    })
+    },[props.currentProduct])
     // todo refactor and move this logic to redux
     const handleOptionChange = event => {
         const target = event.target
         const selectedOptions = {...optionSelectState.selectedOptions, [target.name]: target.value}
-        console.log(selectedOptions)
+        //  dispatch variant change
         props.setSelectedVariant({
             product: product,
             options: selectedOptions
