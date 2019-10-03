@@ -2,11 +2,11 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { all } from 'redux-saga/effects'
 import rootReducer from './reducers'
-import {createShopifyMiddleware} from "./old/middleware/shopifyMiddleWare"
+import {createShopifyMiddleware} from "./middleware/shopifyMiddleWare"
 import {throttle,} from 'lodash'
 import sagas from "./sagas"
 import Client from "shopify-buy"
-import { loadState, saveState } from "./old/utils"
+import { loadState, saveState } from "./utils"
 
 
 console.log('redux store logic index, node env: ', process.env.SHOP_NAME)

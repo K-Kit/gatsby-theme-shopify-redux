@@ -31,34 +31,34 @@ export const CartListItem = (props) => <li {...props} sx={{
 
 }}>
   <Flex justifyContent={'space-evenly'} alignItems={'center'}>
-    <Box w={1/4}>
+    <Box width={'auto'}>
       <img sx={{
         width: 36,
       }} src={props.item.variant.image.src} />
     </Box>
-    <Box w={1/4}>
+    <Box width={'auto'}>
       <Styled.p>{props.item.title}</Styled.p>
       <Styled.p>{props.item.variant.title}, ${props.item.variant.price}</Styled.p>
     </Box>
-    <Box w={1/4}>
+    <Box width={'auto'}>
       <Input sx={{
         p: 1,
         m: 1,
         width: 40,
       }}
+             onChange={e => props.updateQuantity(e.target.value)}
              value={props.item.quantity}
       type={'number'}
              // value={it}
       />
     </Box>
-    <Box w={1/4}>
-        <MdClose onClick={() => {
-        //    remove item from cart, pass
-        }} />
+    <Box width={'auto'}>
+        <MdClose onClick={props.handleRemove} />
     </Box>
   </Flex>
 </li>
 
+// probably refactor to table later
 export const CartList = ({
                     items,
                     handleRemove,
@@ -68,10 +68,12 @@ export const CartList = ({
                   }) => (
     <div sx={{mt: 6, width: ['100%'], minWidth: 280}}>
       <Headers>
-        <Box w={1/4}>Product</Box>
-        <Box w={1/4}></Box>
-        <Box w={1/4}>Qty.</Box>
-        <Box w={1/4}>Remove</Box>
+        <Box width={1/4}>Product</Box>
+        <Box width={1/2}></Box>
+        <Box  sx={{'div': {display: 'inline'}, ml: 'auto'}}>
+            <Box sx={{mr: [1,2]}} >Qty.</Box>
+            <Box>Remove</Box>
+        </Box>
       </Headers>
       <CartListRoot>
         {items.map(item => {
@@ -81,8 +83,8 @@ export const CartList = ({
             <CartListItem
                 key={item.id}
                 item={item}
-                // handleRemove={handleRemove(item.id)}
-                // updateQuantity={updateQuantity(item.id)}
+                handleRemove={handleRemove(item.id)}
+                updateQuantity={updateQuantity(item.id)}
                 // setCartLoading={setCartLoading}
                 // isCartLoading={isCartLoading}
             />

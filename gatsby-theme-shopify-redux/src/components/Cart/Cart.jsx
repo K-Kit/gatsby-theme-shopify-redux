@@ -29,11 +29,12 @@ const Cart = (props) => (
       }}>
           Cart
       </Button>
+      {/*ikik naming conventions are a mess will fix soontm*/}
       <CartList
           sx={{minWidth: 300}}
           items={props.checkout.lineItems}
-          // handleRemove={handleRemove}
-          // updateQuantity={handleQuantityChange}
+          handleRemove={props.removeLineItem}
+          updateQuantity={props.updateLineItem}
           // setCartLoading={setCartLoading}
           // isCartLoading={this.state.isLoading}
       />

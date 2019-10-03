@@ -9,7 +9,12 @@ import {
     openCart,
     closeCart,
     setSelectedVariant,
-    SET_SELECTED_VARIANT_SAGA, CREATE_CHECKOUT_SAGA, UPDATE_CHECKOUT, ADD_TO_CART_SAGA, CREATE_CHECKOUT
+    SET_SELECTED_VARIANT_SAGA,
+    CREATE_CHECKOUT_SAGA,
+    UPDATE_CHECKOUT,
+    ADD_TO_CART_SAGA,
+    CREATE_CHECKOUT,
+    REMOVE_LINE_ITEM_SAGA, UPDATE_LINE_ITEM_SAGA
 } from './actions'
 // import {CREATE_CHECKOUT} from "./old/actions/actionTypes";
 
@@ -78,10 +83,31 @@ export function* setVariantSaga({payload: {product,options}, meta: {client}}) {
     yield put(setSelectedVariant(selectedVariant))
     // console.log('set sel variant', selectedVariant)
 }
+
+export function* removeLineItem({payload, meta: {client}}) {
+    // payload: itemId
+    const checkoutID = yield select(state => ensureState(state.shopify.checkout).id)
+    const res = yield client.checkout.removeLineItems(checkoutID, [payload])
+    //todo error handling
+    yield put(setCheckout(res))
+}
+
+export function* updateLineItem({payload: {lineItemID, quantity}, meta: {client}}) {
+    const checkoutID = yield select(state => ensureState(state.shopify.checkout).id)
+    const lineItemsToUpdate = [
+        { id: lineItemID, quantity: parseInt(quantity, 10) },
+    ]
+    const res = yield client.checkout.updateLineItems(checkoutID, lineItemsToUpdate)
+    //todo error handling
+    yield put(setCheckout(res))
+}
+
 export default [
     takeEvery(SET_SELECTED_VARIANT_SAGA, setVariantSaga),
     takeEvery(CREATE_CHECKOUT, createCheckout),
     takeEvery(UPDATE_CHECKOUT, updateCheckoutSaga),
-    takeEvery(ADD_TO_CART_SAGA, addVariantSaga)
+    takeEvery(ADD_TO_CART_SAGA, addVariantSaga),
+    takeEvery(REMOVE_LINE_ITEM_SAGA, removeLineItem),
+    takeEvery(UPDATE_LINE_ITEM_SAGA, updateLineItem)
 ]
 
