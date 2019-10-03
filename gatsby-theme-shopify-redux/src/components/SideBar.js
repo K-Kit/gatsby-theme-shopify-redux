@@ -9,22 +9,23 @@ import {useSelector} from "react-redux";
 import Cart from "./Cart/Cart";
 
 
-const sideStyles = {
+const sideStyles = isOpen => ({
     right: {
-        top: 0, right: 0
+        top: 0, right: 0,
+        transform: isOpen ? 'translateX(0%)':'translateX(100%)',
     },
     left: {
-        top: 0, left: 0
+        top: 0, left: 0,
+        transform: isOpen ? 'translateX(0%)':'translateX(-100%)',
     },
-}
+})
 
 export const SideBar = ({pos='left', children, isOpen, ...props}) => {
     return (
         <div sx={{
-            ...sideStyles[pos],
+            ...sideStyles(isOpen)[pos],
             position: 'fixed',
             height: '100vh',
-            transform: isOpen ? 'translateX(0%)':'translateX(100%)',
             bg: 'background',
             px: [3],
             transition: `transform 0.8s`,

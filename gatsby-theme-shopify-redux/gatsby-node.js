@@ -45,7 +45,8 @@ exports.createPages = ({ actions, graphql }, options) => {
     const slug = str
         .toLowerCase()
         .replace(/[^a-z0-9]+!\//g, '-')
-        .replace(/(^-|-$)+/g, '');
+        .replace(/(^-|-$)+/g, '')
+        .replace(' ', '-');
 
     return `/${basePath}/${slug}`.replace(/\/\/+/g, '/');
   };
@@ -60,7 +61,7 @@ exports.createPages = ({ actions, graphql }, options) => {
 
   return graphql(`
   {
-    allShopifyProduct(sort: {fields: [updatedAt], order: DESC}, skip: 1, limit: 15) {
+    allShopifyProduct(sort: {fields: [updatedAt], order: DESC}, skip: 1, limit: 50) {
       edges {
         node {
           handle
@@ -96,7 +97,7 @@ exports.createPages = ({ actions, graphql }, options) => {
     result.data.allShopifyThemeCollectionGroup.nodes.forEach((node) => {
       node.items.map(collection => {
         createPage({
-          path: slugify(collectionsPath + collection.name),
+          path: slugify(collectionsPath + `/${node.name}/` + collection.name),
           component: collectionTemplate,
           context: {
             // Data passed to context is available

@@ -20,6 +20,7 @@ export const REMOVE_LINE_ITEM_SAGA = 'REMOVE_LINE_ITEM_SAGA'
 export const ADD_TO_CART_SAGA = 'ADD_TO_CART_SAGA'
 export const CREATE_CHECKOUT = 'CREATE_CHECKOUT'
 export const UPDATE_CHECKOUT = 'UPDATE_CHECKOUT'
+export const TOGGLE_SIDENAV = 'TOGGLE_SIDENAV'
 // Cart actions
 export const {
     openCart,
@@ -30,6 +31,8 @@ export const {
     [CLOSE_CART]: undefined ,
     [TOGGLE_CART]: undefined ,
 })
+
+export const toggleSideNav = createAction(TOGGLE_SIDENAV)
 
 // product page actions
 export const {

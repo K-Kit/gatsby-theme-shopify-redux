@@ -6,12 +6,14 @@ import {
     setCheckout,
     setFeatured, setIsDesktop, setProduct, setSelectedVariant, toggleCart,
     toggleImageBrowser,
-    updateLineItem
+    updateLineItem, toggleSideNav
 } from "./actions";
 import {combineReducers} from "redux";
-import shop from "./old/reducers/shop";
-import ui from "./old/reducers/ui";
 
+
+export const sideNav = handleActions({
+    [toggleSideNav]: (state, {payload}) => !state
+}, false)
 
 /**
  * todo refactor actions to take in specified values, just quickly refactoring for now
@@ -70,5 +72,6 @@ const cart = handleActions(
 export default combineReducers({
     shopify,
     cart,
-    productPage
+    productPage,
+    sideNav
 })

@@ -10,7 +10,7 @@ import config from '../../../data/SiteConfig'
 import {useDispatch, useSelector} from "react-redux";
 // import {setIsDesktop, } from '../../redux/old/actions'
 import {CartContainer} from "../CartContainer";
-import {TOGGLE_CART, setIsDesktop, toggleCart,closeCart} from '../../store/actions'
+import {TOGGLE_CART, setIsDesktop, toggleCart, closeCart, toggleSideNav} from '../../store/actions'
 import {SideNav} from "../SideNav";
 const Layout = (props) => {
     const dispatch = useDispatch()
@@ -54,7 +54,7 @@ const Layout = (props) => {
 
                   <button
                       title='Toggle Menu'
-                      onClick={() => dispatch(toggleCart())}
+                      onClick={() => dispatch(toggleSideNav())}
                       sx={{
                           appearance: 'none',
                           width: 32,

@@ -10,7 +10,7 @@ export const ProductCard = ({ product }) => {
     return (
         <Card
             className="card-product card-plain"
-            onClick={() => navigate(`/product/${product.handle}`)}
+            onClick={() => navigate(`/products/${product.handle}`)}
         >
 
 
