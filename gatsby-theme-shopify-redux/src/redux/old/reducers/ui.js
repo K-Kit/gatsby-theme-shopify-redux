@@ -2,8 +2,7 @@ import React from 'react'
 import {} from 'lodash'
 import * as actions from '../actions/actionTypes'
 export const defaultInterfaceContext = {
-    isDesktopViewport: false,
-    cartStatus: false,
+    isDesktop: false,
     featuredImage: null,
     currentProduct: {},
     productImagesBrowserStatus: 'initial',

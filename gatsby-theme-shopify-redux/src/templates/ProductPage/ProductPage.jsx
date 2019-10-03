@@ -12,6 +12,7 @@ import {Box, Button, Flex,} from 'rebass'
 import {Tiles} from '@rebass/layout'
 import {VariantSelect} from "../../components/VariantSelect";
 import * as actions from '../../redux/actions'
+// import {set} from '../../redux/actions'
 
 import {
     StyledImage,
@@ -21,16 +22,14 @@ import {
     ProductImagesDesktop,
     ProductImagesMobile
 } from './ProductPage.styles'
+
+
 const ProductPage = ({data, ...props}) => {
+    console.log(props)
     const product = data.shopifyProduct
     const html = ReactHtmlParser(product.descriptionHtml)
     const isBrowser = typeof window !== 'undefined'
-    useEffect(() => {
-        if (isBrowser && props.currentProduct !== product){
-            props.setCurrentProduct(product)
-            // props.setSelectedVariant(product.variants[0])
-        }
-    })
+
     // maybe move this part to redux but not sure what advantage there would be.
     let defaultOptionValues = {}
     product.options.map(selector => {
@@ -39,25 +38,30 @@ const ProductPage = ({data, ...props}) => {
     const [optionSelectState, setOptionSelectState] = useState({
         selectedOptions: { ...defaultOptionValues },
         quantity: 1,
-        selectedVariant: product.variants[0],
     })
 
+    useEffect(() => {
+        // todo (maybe) cleanup func to reduce store size and delete selected products & stuff
+        if (isBrowser && props.currentProduct !== product){
+            props.setCurrentProduct(product)
+            props.setSelectedVariant({
+                product: product,
+                options: defaultOptionValues,
+            })
+        }
+    },[props.currentProduct])
     // todo refactor and move this logic to redux
     const handleOptionChange = event => {
         const target = event.target
-        let selectedOptions = optionSelectState.selectedOptions
-        selectedOptions[target.name] = target.value
-
-        // refactor for async change saga
-        // nested reducer interface->product->variantselect,images,etc
-        const selectedVariant = props.client.product.helpers.variantForOptions(
-            product,
-            selectedOptions
-        )
-        console.log(selectedVariant)
+        const selectedOptions = {...optionSelectState.selectedOptions, [target.name]: target.value}
+        //  dispatch variant change
+        props.setSelectedVariant({
+            product: product,
+            options: selectedOptions
+        })
         setOptionSelectState({
             ...optionSelectState,
-            selectedVariant: selectedVariant,
+            selectedOptions
         })
     }
 
@@ -106,7 +110,7 @@ const ProductPage = ({data, ...props}) => {
         <Tiles columns={[1]} sx={{width: ['100%', 'auto'], maxWidth: '600', }}>
           {variantSelectors}
           <Button variant={'primary'} onClick={() => props.addVariantToCart({
-              variantId: optionSelectState.selectedVariant.shopifyId, quantity: optionSelectState.quantity
+              variantId: props.selectedVariant.shopifyId, quantity: optionSelectState.quantity
           })}> Add to Cart </Button>
         </Tiles>
       </Flex>
@@ -125,22 +129,21 @@ ProductPage.defaultProps = {
 
 const mapStateToProps = state => ({
   // current variant, featured image, et
-    client: state.shop.client,
-    currentProduct: state.ui.currentProduct,
-    featuredImage: state.ui.featuredImage,
-    isDesktopViewport: state.ui.isDesktopViewport,
-    // selectedVariant: state.ui.selectedVariant,
+    currentProduct: state.productPage.currentProduct,
+    featuredImage: state.productPage.featuredImage,
+    isDesktopViewport: state.productPage.isDesktop,
+    selectedVariant: state.productPage.selectedVariant,
 
 });
 
 const mapDispatchToProps = dispatch => ({
   // fnBlaBla: () => dispatch(action.name()),
-    setCurrentProduct: (product) => dispatch(actions.setCurrentProduct(product)),
+
     toggleImageBrowser: () => dispatch(actions.toggleImageBrowser()),
-    addVariantToCart: ({variantId, quantity}) => dispatch(actions.addVariantToCart({variantId, quantity})),
-    setFeaturedImage: (img) => dispatch(actions.setFeaturedImage(img)),
-    // setSelectedVariant: (payload) => dispatch(actions.setSelectedVariant(payload)),
-    // addToCart:
+    addVariantToCart: ({variantId, quantity}) => dispatch(actions.addToCartSaga({variantId, quantity})),
+    setFeaturedImage: (img) => dispatch(actions.setFeatured(img)),
+    setSelectedVariant: ({product, options}) => dispatch(actions.setSelectedVariantSaga({product, options})),
+    setCurrentProduct: (product) => dispatch(actions.setProduct(product)),
 
 });
 

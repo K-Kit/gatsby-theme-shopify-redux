@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import {CartList} from "./Cart.styles";
 //import { Test } from './Cart.styles';
 import {Box, Flex, Button} from "rebass";
-import {toggleCart} from '../../redux/actions'
+import {toggleCart} from '../../redux/old/actions'
+
+// todo move styles out of here
 const Cart = (props) => (
   <div>
       <Button
@@ -27,18 +29,25 @@ const Cart = (props) => (
       }}>
           Cart
       </Button>
+      {/*ikik naming conventions are a mess will fix soontm*/}
       <CartList
+          sx={{minWidth: 300}}
           items={props.checkout.lineItems}
-          // handleRemove={handleRemove}
-          // updateQuantity={handleQuantityChange}
+          handleRemove={props.removeLineItem}
+          updateQuantity={props.updateLineItem}
           // setCartLoading={setCartLoading}
           // isCartLoading={this.state.isLoading}
       />
+      <a href={props.checkoutUrl}>
+      <Button> Check Out </Button>
+      </a>
   </div>
 );
 
 Cart.propTypes = {
   // bla: PropTypes.string,
+    checkoutUrl: PropTypes.string,
+    checkout: PropTypes.object
 };
 
 Cart.defaultProps = {
@@ -46,7 +55,7 @@ Cart.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  checkout: state.shop.checkout,
+  checkout: state.shopify.checkout,
 
 });
 

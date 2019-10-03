@@ -4,7 +4,7 @@ import { all } from 'redux-saga/effects'
 import rootReducer from './reducers'
 import {createShopifyMiddleware} from "./middleware/shopifyMiddleWare"
 import {throttle,} from 'lodash'
-import checkoutSagas from "./sagas/checkout"
+import sagas from "./sagas"
 import Client from "shopify-buy"
 import { loadState, saveState } from "./utils"
 
@@ -29,7 +29,7 @@ const enhancer = composeEnhancers(
 
 // apply middleware + redux devtools extension,
 // todo probably remove in production?
-
+// todo: impl better load/save state, just doing everything right now
 export const configureStore = () => {
   const store = createStore(
     rootReducer,
@@ -43,7 +43,7 @@ export const configureStore = () => {
 
 // Saga
   function* makeCheckoutSagas() {
-    yield all([...checkoutSagas])
+    yield all([...sagas])
   }
 
 // then run the saga
