@@ -10,7 +10,7 @@ import config from '../../../data/SiteConfig'
 import {useDispatch, useSelector} from "react-redux";
 // import {setIsDesktop, } from '../../redux/old/actions'
 import {CartContainer} from "../CartContainer";
-import {TOGGLE_CART, setIsDesktop, toggleCart,closeCart} from '../../redux/actions'
+import {TOGGLE_CART, setIsDesktop, toggleCart,closeCart} from '../../store/actions'
 const Layout = (props) => {
     const dispatch = useDispatch()
     const isDesktop = useSelector(state => state.productPage.isDesktop)

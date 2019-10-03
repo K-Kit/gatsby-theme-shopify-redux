@@ -8,7 +8,7 @@ import {CompareAtPrice} from './CompareAtPrice'
 import {useDispatch, useSelector} from "react-redux";
 import Cart from "./Cart/Cart";
 import {SideBar} from "./SideBar";
-import {removeLineItemSaga, updateLineItemSaga} from "../redux/actions";
+import {removeLineItemSaga, updateLineItemSaga} from "../store/actions";
 
 
 const sideStyles = {

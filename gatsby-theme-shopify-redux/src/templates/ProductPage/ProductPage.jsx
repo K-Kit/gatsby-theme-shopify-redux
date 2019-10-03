@@ -11,7 +11,7 @@ import ReactHtmlParser from 'react-html-parser'
 import {Box, Button, Flex,} from 'rebass'
 import {Tiles} from '@rebass/layout'
 import {VariantSelect} from "../../components/VariantSelect";
-import * as actions from '../../redux/actions'
+import * as actions from '../../store/actions'
 // import {set} from '../../redux/actions'
 
 import {

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {CartList} from "./Cart.styles";
 //import { Test } from './Cart.styles';
 import {Box, Flex, Button} from "rebass";
-import {toggleCart} from '../../redux/old/actions'
+import {toggleCart} from '../../store/old/actions'
 
 // todo move styles out of here
 const Cart = (props) => (
