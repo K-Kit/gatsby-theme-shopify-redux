@@ -1,8 +1,12 @@
 # Gatsby Theme Shopify Redux (wip)
-This is not ready for use in production.
 
+### This project is currently in alpha
+things may change, many features unimplemented however basic cart functionality and page gen is up and running.
+ 
 
 probably a lot of optimizing to do in package.json (esp peer deps)
+
+##### More docs coming soon...
 
 ## Why this theme
 - simple & predictable state management with redux
@@ -19,6 +23,12 @@ ideas:
 
 
 ## Quick Start
+
+requires env variables
+
+`SHOP_NAME=name`
+
+`SHOPIFY_ACCESS_TOKEN=token`
 
 ```shell
 mkdir my-site
