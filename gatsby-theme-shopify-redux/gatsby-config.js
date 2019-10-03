@@ -1,11 +1,23 @@
 require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
   })
-module.exports = {
+
+
+module.exports = ({ contentPath = 'shopifyCustomization', basePath = '/' }) => ({
     plugins: [
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: contentPath
+            }
+        },
         'gatsby-plugin-root-import',
-        
-        `gatsby-transformer-yaml`,
+        {
+            resolve: 'gatsby-transformer-yaml',
+            options: {
+                typeName: 'ShopifyThemeCollectionGroup'
+            }
+        },
         'gatsby-plugin-theme-ui',
         'gatsby-theme-style-guide',
         
@@ -55,4 +67,4 @@ module.exports = {
         
 
     ]
-}
+})

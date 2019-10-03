@@ -1,0 +1,62 @@
+- name: womens
+  title: Women's
+  items:
+    - name: Leggings
+      tags: [yoga, yogas]
+
+    - name: High Tops
+      tags: [hightop, high-top, high-tops]
+    - name: Low Tops
+      tags: [low-top]
+
+    - name: Slip Ons
+      tags: [slip on, slip-on, slip]
+
+    - name: Sarongs
+      tags: [sarong]
+
+    - name: T-Shirts
+      tags: [t shirt, shirt, t-shirt]
+
+    - name: Hoodies
+      tags: [hoodies, zip]
+
+
+    - name: Hooded Dress
+      tags: [hooded dress]
+
+    - name: Grape Ape
+      tags: [grape-ape]
+
+- name: mens
+  title: Men's
+  items:
+    - name: Grape Ape
+      tags: [grape-ape]
+
+    - name: Low Tops
+      tags: [low-top, lowtop, low-tops, lowtops]
+
+    - name: Slip Ons
+      tags: [slip on, slip-on, slip]
+    - name: High Tops
+      tags: [hightop, high-top, high-tops]
+
+    - name: T-Shirts
+      tags: [t shirt, shirt, t-shirt]
+
+    - name: Hoodies
+      tags: [hoodies, zip]
+
+- name: shoes
+  title: Shoes
+  items:
+    - name: High Tops
+      tags: [hightop, high-top, high-tops]
+
+    - name: Low Tops
+      tags: [low-top, lowtop, low-tops, lowtops]
+
+    - name: Slip Ons
+      tags: [slip on, slip-on, slip]
+

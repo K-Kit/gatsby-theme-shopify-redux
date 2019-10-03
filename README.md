@@ -15,6 +15,11 @@ probably a lot of optimizing to do in package.json (esp peer deps)
 - optional support for product reviews & maybe discourse (wip)
 - & more!
 
+
+## Custom ShopifyThemeCollection
+
+- example in gatsby-theme-shopify-redux/shopifyCustomization/collections.yml 
+
 ideas:
 - sales yml
 - promotions
