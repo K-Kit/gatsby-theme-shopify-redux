@@ -37,14 +37,14 @@ exports.sourceNodes = ({ actions,createNodeId }) => {
 
 exports.createPages = ({ actions, graphql }, options) => {
   const basePath = options.basePath || '/';
-  const productPath = options.productPath || '/products/';
+  const productPath = options.productPath || '/products//';
   const collectionsPath = options.productPath || '/collections/';
 
   // Quick-and-dirty helper to convert strings into URL-friendly slugs.
   const slugify = str => {
     const slug = str
         .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/[^a-z0-9]+!\//g, '-')
         .replace(/(^-|-$)+/g, '');
 
     return `/${basePath}/${slug}`.replace(/\/\/+/g, '/');
