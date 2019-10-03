@@ -8,7 +8,17 @@ import {CompareAtPrice} from './CompareAtPrice'
 import {useSelector} from "react-redux";
 import Cart from "./Cart/Cart";
 import {SideBar} from "./SideBar";
+import { AccordionNav } from '@theme-ui/sidenav'
+import Links from '../links.mdx'
 
+export const Accordian = props => (
+    <Links
+        {...props}
+        components={{
+            wrapper: AccordionNav,
+        }}
+    />
+)
 
 const sideStyles = {
     right: {
@@ -23,7 +33,10 @@ export const SideNav = ({pos='left', children, ...props}) => {
     const isOpen = useSelector(state => state.ui.cartStatus)
     return (
         <SideBar pos={'left'}>
+            <Box width={'50vw'} bg={'green'}>
+                <Accordian {...props} />
                 {children}
+            </Box>
         </SideBar>
     )
 }

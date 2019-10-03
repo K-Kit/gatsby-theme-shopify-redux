@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 // import {setIsDesktop, } from '../../redux/old/actions'
 import {CartContainer} from "../CartContainer";
 import {TOGGLE_CART, setIsDesktop, toggleCart,closeCart} from '../../store/actions'
+import {SideNav} from "../SideNav";
 const Layout = (props) => {
     const dispatch = useDispatch()
     const isDesktop = useSelector(state => state.productPage.isDesktop)
@@ -137,6 +138,7 @@ const Layout = (props) => {
                   {props.children}
               </Container>
           </Main>
+          <SideNav />
           <CartContainer />
       </ThemeLayout>
       </>

@@ -5,6 +5,7 @@ require('dotenv').config({
 
 module.exports = ({ contentPath = 'shopifyCustomization', basePath = '/' }) => ({
     plugins: [
+        'gatsby-plugin-mdx',
         {
             resolve: 'gatsby-source-filesystem',
             options: {

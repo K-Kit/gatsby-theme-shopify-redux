@@ -14,12 +14,12 @@ export const ProductCard = ({ product }) => {
         >
 
 
-            <Link to={`/product/${product.handle}`}>
+            <Link to={`/products/${product.handle}`}>
                 <Img fluid={product.images[0].localFile.childImageSharp.fluid} />
             </Link>
             <Box p={2}>
                 <Flex w={1}>
-                    <Link to={`/product/${product.handle}`} sx={{ mx: 'auto', height: '2em', textAlign: 'center', fontSize:2 }}>
+                    <Link to={`/products/${product.handle}`} sx={{ mx: 'auto', height: '2em', textAlign: 'center', fontSize:2 }}>
                         <Heading sx={{ mx: 'auto', height: '2em', textAlign: 'center', fontSize: 2 }}>
                             {product.title}
                         </Heading>
