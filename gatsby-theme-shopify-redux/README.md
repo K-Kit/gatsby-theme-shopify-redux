@@ -1,6 +1,9 @@
 # Gatsby Theme Shopify Redux (wip)
 This is not ready for use in production.
 
+
+probably a lot of optimizing to do in package.json (esp peer deps)
+
 ## Why this theme
 - simple & predictable state management with redux
 - automated product pages
