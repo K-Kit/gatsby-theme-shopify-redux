@@ -1,5 +1,12 @@
-
 # Gatsby Theme Shopify Redux (wip)
+
+### This project is currently in alpha
+things may change, many features unimplemented however basic cart functionality and page gen is up and running.
+ 
+
+probably a lot of optimizing to do in package.json (esp peer deps)
+
+##### More docs coming soon...
 
 ## Why this theme
 - simple & predictable state management with redux
@@ -13,10 +20,15 @@ ideas:
 - promotions
 - mailchimp
 - google adword sheet export
-- facebook catalogue integration
 
 
 ## Quick Start
+
+requires env variables
+
+`SHOP_NAME=name`
+
+`SHOPIFY_ACCESS_TOKEN=token`
 
 ```shell
 mkdir my-site
@@ -34,3 +46,14 @@ module.exports = {
   plugins: [
     {
       resolve: "gatsby-theme-shopify-redux",
+      options: {},
+    },
+  ],
+}
+```
+
+That's it, you can now run your gatsby site using
+
+```shell
+yarn gatsby develop
+```
